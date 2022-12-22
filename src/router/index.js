@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SignIn from '../views/passenger/SignIn.vue'
 import AddFlight from '../views/flight/AddFlight.vue'
+import FlightView from '../views/flight/FlightView.vue'
+import AllAirlinesView from '../views/airline/AllAirlinesView.vue'
 
 const routes = [
   {
@@ -27,8 +29,18 @@ const routes = [
     name: 'AddFlight',
     component: AddFlight
   },
+  {
+    path: '/flight',
+    name: 'FlightView',
+    component: FlightView
+  },
+  {
+    path: '/airlines',
+    name: 'AllAirlinesView',
+    component: AllAirlinesView
+  },
 ]
-
+  
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
