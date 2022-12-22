@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-12 text-center">
         <h3 class="pt-3">All airlines</h3>
-        <router-link :to="{name : 'AddFlight'}">
-          <button class="btn btn-primary">Add new airline</button>
+        <router-link :to="{name : 'AddAirline'}">
+          <button class="btn" id="addAirlineBtn" style="float:right">Add new airline</button>
         </router-link>
       </div>
     </div>
@@ -54,4 +54,17 @@ export default {
 </script>
 
 <style>
+
+#addAirlineBtn{
+  border-color: black;
+}
+
+#addAirlineBtn:hover{
+  background-color: #08457e;
+  border-color: #08457e;
+  color: white;
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
 </style>

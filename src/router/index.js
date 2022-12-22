@@ -4,6 +4,8 @@ import SignIn from '../views/passenger/SignIn.vue'
 import AddFlight from '../views/flight/AddFlight.vue'
 import FlightView from '../views/flight/FlightView.vue'
 import AllAirlinesView from '../views/airline/AllAirlinesView.vue'
+import AddAirline from '../views/airline/AddAirline.vue'
+import AllFlights from '../views/flight/AllFlights.vue'
 
 const routes = [
   {
@@ -38,6 +40,16 @@ const routes = [
     path: '/airlines',
     name: 'AllAirlinesView',
     component: AllAirlinesView
+  },
+  {
+    path: '/airlines/add',
+    name: 'AddAirline',
+    component: AddAirline
+  },
+  {
+    path: '/flights/all',
+    name: 'AllFlights',
+    component: AllFlights
   },
 ]
   

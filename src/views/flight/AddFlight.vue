@@ -53,7 +53,7 @@
               <option value="American air">American air</option>
             </select>
           </div>
-          <button type="button" class="btn btn-primary" @click="addFlight">Create flight</button>
+          <button type="button" class="btn" id="addFlightBtn" @click="addFlight">Create flight</button>
         </form>
       </div>
       <div class="col-3"></div>
@@ -118,5 +118,15 @@ export default {
 </script>
 
 <style>
+#addFlightBtn{
+  border-color: black;
+}
 
+#addFlightBtn:hover{
+  background-color: #08457e;
+  border-color: #08457e;
+  color: white;
+  transform: scale(1.1);
+  transition: 0.4s;
+}
 </style>
