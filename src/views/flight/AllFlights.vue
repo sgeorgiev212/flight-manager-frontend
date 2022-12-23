@@ -30,29 +30,28 @@
   </div>
 </template>
 <script>
-import axios from "axios";
-import swal from "sweetalert";
 export default {
+    props: ["flights"],
   data() {
     return {
-      flights: [],
+    //   flights: [],
       baseUrl: "http://localhost:8888",
     };
   },
 
   methods: {
-    async getAllFlights() {
-      await axios
-        .get(this.baseUrl + "/flights")
-        .then((res) => (this.flights = res.data))
-        .catch((err) => {
-          console.log("err", err);
-          swal({
-            text: err.response.data,
-            icon: "warning",
-          });
-        });
-    },
+    // async getAllFlights() {
+    //   await axios
+    //     .get(this.baseUrl + "/flights")
+    //     .then((res) => (this.flights = res.data))
+    //     .catch((err) => {
+    //       console.log("err", err);
+    //       swal({
+    //         text: err.response.data,
+    //         icon: "warning",
+    //       });
+    //     });
+    // },
     scrollToTop() {
       window.scrollTo(0, 0);
     },
@@ -66,7 +65,6 @@ export default {
   },
   mounted() {
     this.scrollToTop();
-    this.getAllFlights();
   },
 };
 </script>

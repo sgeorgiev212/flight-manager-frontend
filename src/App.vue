@@ -1,10 +1,82 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <NavBar></NavBar>
+    <!-- <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav> -->
+    <router-view 
+    :baseUrl="baseUrl" 
+    :flights="flights"
+    :airlines="airlines"
+    :travelAgencies="travelAgencies"
+    > 
+    </router-view>
+  </div>
 </template>
+
+<script>
+import axios from "axios";
+import swal from "sweetalert";
+import NavBar from './components/navbar/NavBar.vue'
+export default {
+    components: {NavBar},
+  data() {
+    return {
+      baseUrl: "http://localhost:8888",
+      flights: [],
+      airlines: [],
+      travelAgencies: []
+    };
+  },
+
+  methods: {
+    async getAllFlights() {
+      await axios
+        .get(this.baseUrl + "/flights")
+        .then((res) => (this.flights = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+    async getAllAirlines() {
+      await axios
+        .get(this.baseUrl + "/airline")
+        .then((res) => (this.airlines = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+
+    },
+    async getAllTravelAgencies() {
+      await axios
+        .get(this.baseUrl + "/agencies")
+        .then((res) => (this.travelAgencies = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+  },
+
+  mounted() {
+    this.getAllFlights();
+    this.getAllAirlines();
+    this.getAllTravelAgencies();
+  },
+};
+</script>
 
 <style>
 #app {

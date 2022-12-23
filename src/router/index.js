@@ -6,6 +6,8 @@ import FlightView from '../views/flight/FlightView.vue'
 import AllAirlinesView from '../views/airline/AllAirlinesView.vue'
 import AddAirline from '../views/airline/AddAirline.vue'
 import AllFlights from '../views/flight/AllFlights.vue'
+import AdminView from '../views/admin/AdminView.vue'
+import AllTravelAgencies from '../views/travel agency/AllTravelAgencies.vue'
 
 const routes = [
   {
@@ -50,6 +52,16 @@ const routes = [
     path: '/flights/all',
     name: 'AllFlights',
     component: AllFlights
+  },
+  {
+    path: '/admin',
+    name: 'AdminView',
+    component: AdminView
+  },
+  {
+    path: '/travelAgencies/all',
+    name: 'AllTravelAgencies',
+    component: AllTravelAgencies
   },
 ]
   
