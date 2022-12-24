@@ -10,7 +10,9 @@
     <div class="card-body">
       <h5 class="card-title">Name: {{ airline.name }}</h5>
       <p class="card-text">Location: {{ airline.address }}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <router-link :to="{name: 'EditAirline', params: {id: airline.id}}">
+      <a href="#" class="btn btn-primary">Edit</a>
+      </router-link>
     </div>
   </div>
 </template>

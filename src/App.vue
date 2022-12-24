@@ -11,6 +11,10 @@
     :airlines="airlines"
     :travelAgencies="travelAgencies"
     :airports="airports"
+    @getAllFlights="getAllFlights"
+    @getAllAirlines="getAllAirlines"
+    @getAllTravelAgencies="getAllTravelAgencies"
+    @getAllAirports="getAllAirports"
     > 
     </router-view>
   </div>
