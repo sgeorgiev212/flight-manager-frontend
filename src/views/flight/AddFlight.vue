@@ -19,38 +19,20 @@
           </div>
           <div class="form-group pt-3">
             <label>Takeoff airport</label>
-            <select
-              id="cars"
-              name="takeoffAirport"
-              class="form-control"
-              v-model="takeoffAirport"
-            >
-              <option value="Bulgaria airport">Bulgaria airport</option>
-              <option value="USA airport">USA airport</option>
+            <select class="form-control" v-model="takeoffAirport">
+              <option v-for="airport in airports" :key="airport.id" :value="airport.name">{{ airport.name }}</option>
             </select>
           </div>
           <div class="form-group pt-3">
             <label>Land airport</label>
-            <select
-              id="cars"
-              name="landAirport"
-              class="form-control"
-              v-model="landAirport"
-            >
-              <option value="Bulgaria airport">Bulgaria airport</option>
-              <option value="USA airport">USA airport</option>
+             <select class="form-control" v-model="landAirport">
+              <option v-for="airport in airports" :key="airport.id" :value="airport.name">{{ airport.name }}</option>
             </select>
           </div>
           <div class="form-group pt-3">
             <label>Airline</label>
-            <select
-              id="cars"
-              name="airline"
-              class="form-control"
-              v-model="airline"
-            >
-              <option value="Bulgaria air">Bulgaria air</option>
-              <option value="American air">American air</option>
+              <select class="form-control" v-model="airline">
+              <option v-for="airine in airlines" :key="airine.id" :value="airine.name">{{ airine.name }}</option>
             </select>
           </div>
           <button type="button" class="btn" id="addFlightBtn" @click="addFlight">Create flight</button>
@@ -65,6 +47,7 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
+  props: ["airports", "airlines"],
   data() {
     return {
       takeoffTime: "",

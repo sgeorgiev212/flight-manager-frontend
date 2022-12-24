@@ -204,6 +204,5 @@ export default {
 
 .dropdown:hover .dropdown-menu {
   display: block;
-  margin-right: 20px;
 }
 </style>

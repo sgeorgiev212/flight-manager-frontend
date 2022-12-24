@@ -8,6 +8,7 @@ import AddAirline from '../views/airline/AddAirline.vue'
 import AllFlights from '../views/flight/AllFlights.vue'
 import AdminView from '../views/admin/AdminView.vue'
 import AllTravelAgencies from '../views/travel agency/AllTravelAgencies.vue'
+import AddAgency from '../views/travel agency/AddAgency.vue'
 
 const routes = [
   {
@@ -62,6 +63,11 @@ const routes = [
     path: '/travelAgencies/all',
     name: 'AllTravelAgencies',
     component: AllTravelAgencies
+  },
+  {
+    path: '/travelAgencies/add',
+    name: 'AddAgency',
+    component: AddAgency
   },
 ]
   

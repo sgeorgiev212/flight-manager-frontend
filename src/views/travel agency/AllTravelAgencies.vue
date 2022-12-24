@@ -3,6 +3,9 @@
     <div class="row">
       <div class="col-12 mt-5">
         <h4>All travel agancies</h4>
+        <router-link :to="{name: 'AddAgency'}" style="float:right" class="mt-3">
+         <button id="addAgencyBtn">Add travel agency</button>
+        </router-link>
       </div>
     </div>
     <div class="row">
@@ -23,3 +26,19 @@ export default {
   props: ["travelAgencies"],
 };
 </script>
+<style>
+#addAgencyBtn {
+  border-color: black;
+  margin-top: 20px;
+  border-radius: 8px;
+  height: 40px;
+}
+
+#addAgencyBtn:hover {
+  background-color: #08457e;
+  border-color: #08457e;
+  color: white;
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+</style>

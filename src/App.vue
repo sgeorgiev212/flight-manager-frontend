@@ -10,6 +10,7 @@
     :flights="flights"
     :airlines="airlines"
     :travelAgencies="travelAgencies"
+    :airports="airports"
     > 
     </router-view>
   </div>
@@ -26,7 +27,8 @@ export default {
       baseUrl: "http://localhost:8888",
       flights: [],
       airlines: [],
-      travelAgencies: []
+      travelAgencies: [],
+      airports: []
     };
   },
 
@@ -43,6 +45,7 @@ export default {
           });
         });
     },
+
     async getAllAirlines() {
       await axios
         .get(this.baseUrl + "/airline")
@@ -56,10 +59,24 @@ export default {
         });
 
     },
+
     async getAllTravelAgencies() {
       await axios
         .get(this.baseUrl + "/agencies")
         .then((res) => (this.travelAgencies = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+
+    async getAllAirports() {
+      await axios
+        .get(this.baseUrl + "/airports")
+        .then((res) => (this.airports = res.data))
         .catch((err) => {
           console.log("err", err);
           swal({
@@ -74,6 +91,7 @@ export default {
     this.getAllFlights();
     this.getAllAirlines();
     this.getAllTravelAgencies();
+    this.getAllAirports();
   },
 };
 </script>

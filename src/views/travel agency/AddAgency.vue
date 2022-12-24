@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="containter">
     <div class="row">
-      <div class="col-12 text-center">
-        <h3 class="pt-3">Add airline</h3>
+      <div class="col-12 text-center pt-5">
+        <h4>Add new travel agency</h4>
       </div>
     </div>
     <div class="row">
@@ -17,8 +17,8 @@
             <label>Address</label>
             <input type="text" class="form-control" v-model="address" />
           </div>
-          <button type="button" class="btn" id="addAirlineBtn" @click="addAirline">
-            Add airline
+          <button type="button" class="btn" id="addAgencyBtn" @click="addNewAgency">
+            Add agency
           </button>
         </form>
       </div>
@@ -26,32 +26,31 @@
     </div>
   </div>
 </template>
-
 <script>
-import axios from "axios";
+import axios from 'axios';
 import swal from "sweetalert";
 export default {
+  props: ["baseUrl"],
   data() {
     return {
       name: "",
       address: "",
-      baseUrl: "http://localhost:8888",
     };
   },
 
   methods: {
-    async addAirline() {
-      const newAirline = {
-        name: this.name,
-        address: this.address,
-      };
+    async addNewAgency() {
+        const newAgency = {
+            name: this.name,
+            address: this.address
+        }
 
-      await axios
-        .post(this.baseUrl + "/admin/airline", newAirline)
-        .then((res) => {
+        axios.post(this.baseUrl + "/agencies", newAgency)
+             .then((res) => {
           if (res.status == 200) {
+            this.$router.push({name: 'AllTravelAgencies'});
             swal({
-              text: "Airline added successfully!",
+              text: "Travel agency added successfully!",
               icon: "success",
             });
           }
@@ -63,23 +62,20 @@ export default {
             icon: "warning",
           });
         });
-    },
-  },
+    }
+  }
 };
 </script>
-
 <style>
-
-#addAirlineBtn{
+#addAgencyBtn{
   border-color: black;
 }
 
-#addAirlineBtn:hover{
+#addAgencyBtn:hover{
   background-color: #08457e;
   border-color: #08457e;
   color: white;
   transform: scale(1.1);
   transition: 0.4s;
 }
-
 </style>
