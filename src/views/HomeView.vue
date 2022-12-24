@@ -13,38 +13,60 @@
           </p>
         </header>
       </div>
-      <hr/>
     </div>
-          <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-             <h2 class="pt-3">Airlines</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div v-for="index in this.airlinesSize" :key="index" class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex">
-            <AirlineBox :airline="airlines[index-1]"></AirlineBox>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="pt-3 mt-5">Airlines</h2>
         </div>
       </div>
+      <div class="row">
+        <div
+          v-for="index in this.airlinesSize"
+          :key="index"
+          class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex"
+        >
+          <AirlineBox :airline="airlines[index-1]"></AirlineBox>
+        </div>
+         {{airlines}}
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="pt-3 mt-5">Travel agencies</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          v-for="index in this.travelAgenciesSize"
+          :key="index"
+          class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex"
+        >
+          <TravelAgencyBox :agency="travelAgencies[index-1]"></TravelAgencyBox>
+        </div>
+          {{airlines}}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import AirlineBox from '../components/airline/AirlineBox.vue'
+import AirlineBox from "../components/airline/AirlineBox.vue";
+import TravelAgencyBox from '../components/travel agency/TravelAgencyBox.vue';
 export default {
   name: "HomeView",
   props: ["airlines", "travelAgencies"],
-  components: {AirlineBox},
+  components: { AirlineBox, TravelAgencyBox },
   data() {
     return {
-      airlinesSize: 0
-    }
+      airlinesSize: 0,
+      travelAgenciesSize: 0,
+    };
   },
 
   mounted() {
     this.airlinesSize = Math.min(6, this.airlines.length);
-  }
+    this.travelAgenciesSize = Math.min(6, this.travelAgencies.length);
+  },
 };
 </script>
 <style>

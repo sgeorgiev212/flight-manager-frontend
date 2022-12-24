@@ -17,6 +17,7 @@
     @getAllAirports="getAllAirports"
     > 
     </router-view>
+    <FooterComponent/>
   </div>
 </template>
 
@@ -24,8 +25,9 @@
 import axios from "axios";
 import swal from "sweetalert";
 import NavBar from './components/navbar/NavBar.vue'
+import FooterComponent from './components/footer/FooterComponent.vue';
 export default {
-    components: {NavBar},
+    components: {NavBar, FooterComponent},
   data() {
     return {
       baseUrl: "http://localhost:8888",
