@@ -10,7 +10,9 @@
     <div class="card-body">
       <h5 class="card-title">Name: {{ agency.name }}</h5>
       <p class="card-text">Address: {{ agency.address }}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <router-link :to="{name: 'EditAgency', params: {id: agency.id}}">
+      <button class="btn" id="editBtn">Edit</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -24,4 +26,17 @@ export default {
 .card-img-top{
   object-fit: cover;
 }
+
+#editBtn{
+  border-color: black;
+}
+
+#editBtn:hover{
+  background-color: #08457e;
+  border-color: #08457e;
+  color: white;
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
 </style>

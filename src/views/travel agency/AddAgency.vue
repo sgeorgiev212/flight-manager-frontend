@@ -17,9 +17,10 @@
             <label>Address</label>
             <input type="text" class="form-control" v-model="address" />
           </div>
-          <button type="button" class="btn" id="addAgencyBtn" @click="addNewAgency">
-            Add agency
-          </button>
+          <button type="button" class="btn mr-2" id="addAgencyBtn" @click="addNewAgency">Add agency</button>
+           <router-link :to="{name: 'AllTravelAgencies'}">
+             <button type="button" class="btn" id="addAgencyBtn">Back to agencies list</button>
+            </router-link>
         </form>
       </div>
       <div class="col-3"></div>
