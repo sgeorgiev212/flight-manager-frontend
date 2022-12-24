@@ -74,6 +74,7 @@ export default {
 <style>
 #checkDetailsBtn {
   border-color: black;
+  height: 35px;
 }
 
 #checkDetailsBtn:hover {
