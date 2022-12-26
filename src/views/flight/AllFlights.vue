@@ -3,8 +3,12 @@
     <div class="row">
       <div class="col-12 text-center">
         <h3 class="pt-3">All flights</h3>
-         <router-link :to="{name: 'AddFlight'}" style="float:right" class="mt-3">
-         <button id="addAgencyBtn">Add new flight</button>
+        <router-link
+          :to="{ name: 'AddFlight' }"
+          style="float: right"
+          class="mt-3"
+        >
+          <button id="addAgencyBtn">Add new flight</button>
         </router-link>
       </div>
     </div>
@@ -23,7 +27,13 @@
             <div class="col-3 mt-2">To: {{ flight.landAirport }}</div>
             <div class="col-3 mt-2">Airline: {{ flight.airline }}</div>
             <div class="col-3" style="text-align: right">
-              <button class="btn mt-1" id="checkDetailsBtn">Check details</button>
+              <button
+                class="btn mt-1"
+                id="checkDetailsBtn"
+                @click="showFlightDetails(flight.flightId)"
+                >
+                Check details
+              </button>
             </div>
           </div>
           <hr />
@@ -34,10 +44,10 @@
 </template>
 <script>
 export default {
-    props: ["flights"],
+  props: ["flights"],
   data() {
     return {
-    //   flights: [],
+      //   flights: [],
       baseUrl: "http://localhost:8888",
     };
   },
@@ -59,10 +69,10 @@ export default {
       window.scrollTo(0, 0);
     },
 
-    loadOrderDetails(orderId) {
+    showFlightDetails(currentFlightId) {
       this.$router.push({
-        name: "CurrentOrderDetails",
-        params: { orderId: orderId },
+        name: "FlightDetails",
+        params: { id: currentFlightId },
       });
     },
   },

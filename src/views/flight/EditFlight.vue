@@ -2,7 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h3 class="pt-3">Add flight</h3>
+        <h3 class="pt-3">Flight details</h3>
+        <hr/>
       </div>
     </div>
     <div class="row">
@@ -11,11 +12,11 @@
         <form>
           <div class="form-group pt-3">
             <label>Takeoff time</label>
-            <input type="datetime-local" class="form-control" v-model="takeoffTime" />
+            <input type="datetime-local" class="form-control" v-model="flight.takeoffTime" />
           </div>
           <div class="form-group pt-3">
             <label>Land time</label>
-            <input type="datetime-local" class="form-control" v-model="landTime" />
+            <input type="datetime-local" class="form-control" v-model="flight.landTime" />
           </div>
           <div class="form-group pt-3">
             <label>Takeoff airport</label>
@@ -35,7 +36,7 @@
               <option v-for="airine in airlines" :key="airine.id" :value="airine.name">{{ airine.name }}</option>
             </select>
           </div>
-          <button type="button" class="btn" id="addFlightBtn" @click="addFlight">Create flight</button>
+          <button type="button" class="btn" id="editFlightBtn" @click="editFlight">Edit</button>
         </form>
       </div>
       <div class="col-3"></div>
@@ -47,20 +48,21 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["airports", "airlines"],
+  props: ["airports", "airlines", "flights"],
   data() {
     return {
-      takeoffTime: "",
-      landTime: "",
+      flight: {},
+    //   takeoffTime: "",
+    //   landTime: "",
       takeoffAirport: "",
       landAirport: "",
       airline: "",
-      baseUrl: "http://localhost:8888"
+      baseUrl: "http://localhost:8888",
     };
   },
 
   methods: {
-    async addFlight() {
+    async editFlight() {
         console.log("takeoff time ", this.takeoffTime);
         console.log("landTime time ", this.landTime);
         console.log("takeoffAirport ", this.takeoffAirport);
@@ -68,8 +70,9 @@ export default {
         console.log("airline ", this.airline);
 
         const newFlight = {
-            takeoffTime: this.takeoffTime,
-             landTime: this.landTime,
+            flightId: this.flight.id,
+            takeoffTime: this.flight.takeoffTime,
+            landTime: this.flight.landTime,
             takeoffAirport: this.takeoffAirport,
             landAirport: this.landAirport,
             airline: this.airline
@@ -77,11 +80,11 @@ export default {
 
     
 
-        await axios.post(this.baseUrl + "/airline/flight", newFlight)
+        await axios.put(this.baseUrl + "/airline/flight", newFlight)
         .then((res) => {
           if (res.status == 200) {
             swal({
-              text: "Flight created successfully!",
+              text: "Flight updated successfully!",
               icon: "success",
             });
           }
@@ -94,16 +97,21 @@ export default {
              }) 
     });
     }
+  },
+
+  mounted() {
+    this.id = this.$route.params.id;
+    this.flight = this.flights.find((flight) => flight.id == this.id);
   }
 };
 </script>
 
 <style>
-#addFlightBtn{
+#editFlightBtn{
   border-color: black;
 }
 
-#addFlightBtn:hover{
+#editFlightBtn:hover{
   background-color: #08457e;
   border-color: #08457e;
   color: white;

@@ -51,42 +51,7 @@ export default {
             text: err.response.data,
             icon: "warning",
           });
-        });
-
-       await axios
-        .get(this.baseUrl + "/airline")
-        .then((res) => (this.airlines = res.data))
-        .catch((err) => {
-          console.log("err", err);
-          swal({
-            text: err.response.data,
-            icon: "warning",
-          });
-        });
-
-           await axios
-        .get(this.baseUrl + "/agencies")
-        .then((res) => (this.travelAgencies = res.data))
-        .catch((err) => {
-          console.log("err", err);
-          swal({
-            text: err.response.data,
-            icon: "warning",
-          });
-        });
-
-
-        await axios
-        .get(this.baseUrl + "/airports")
-        .then((res) => (this.airports = res.data))
-        .catch((err) => {
-          console.log("err", err);
-          swal({
-            text: err.response.data,
-            icon: "warning",
-          });
-        }); 
-      
+        });     
     },
 
     async getAllAirlines() {
@@ -132,9 +97,9 @@ export default {
 
   mounted() {
     this.getAllFlights();
-    // this.getAllAirlines();
-    // this.getAllTravelAgencies();
-    // this.getAllAirports();
+    this.getAllAirlines();
+    this.getAllTravelAgencies();
+    this.getAllAirports();
   },
 };
 </script>
