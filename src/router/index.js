@@ -101,7 +101,7 @@ const routes = [
     component: FlightDetails
   },
   {
-    path: '/flights/:id/edit',
+    path: '/flights/edit/:id',
     name: 'EditFlight',
     component: EditFlight
   },

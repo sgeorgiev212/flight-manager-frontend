@@ -37,13 +37,11 @@
             <input type="text" class="form-control" v-model="flight.status" readonly style="background-color:white"/>
           </div>
           <router-link :to="{name: 'AllFlights'}">
-          <button type="button" class="btn mr-2" id="editFlightBtn" @click="editFlight">Back to flights list</button>
+          <button type="button" class="btn mr-2" id="detailsBtn">Back to flights list</button>
           </router-link>
-          <button type="button ml-2" class="btn" id="editFlightBtn" @click="bookFlight">Book flight</button>
+          <button type="button ml-2" class="btn" id="detailsBtn" @click="bookFlight">Book flight</button>
           <div>
-            <router-link :to="{name: 'EditFlight', params: { id: flight.flightId }}">
-             <button type="button ml-2" class="btn mt-3" id="editFlightBtn" @click="bookFlight">Edit flight</button>
-            </router-link>
+             <button type="button ml-2" class="btn mt-3" id="detailsBtn" @click="goToEditPage">Edit flight</button>
           </div>
         </form>
       </div>
@@ -64,7 +62,13 @@ export default {
   },
 
   methods: {
+    goToEditPage() {
+        this.$router.push({name: 'EditFlight', params: { id: this.flight.flightId }});
+    },
 
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
   },
 
   mounted() {
@@ -72,16 +76,17 @@ export default {
     this.flight = this.flights.find((flight) => flight.flightId == this.id);
     this.takeoffTime = this.flight.takeoffTime.split('T')[0] + " " +  this.flight.takeoffTime.split('T')[1].substring(0,8);
     this.landTime = this.flight.landTime.split('T')[0] + " " +  this.flight.landTime.split('T')[1].substring(0,8);
+    this.scrollToTop();
   }
 };
 </script>
 
 <style>
-#editFlightBtn{
+#detailsBtn{
   border-color: black;
 }
 
-#editFlightBtn:hover{
+#detailsBtn:hover{
   background-color: #08457e;
   border-color: #08457e;
   color: white;
