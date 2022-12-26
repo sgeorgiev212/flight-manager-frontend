@@ -19,7 +19,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="form-inline ml-auto mr-auto" onsubmit="return false;">
+      <!-- <form class="form-inline ml-auto mr-auto" onsubmit="return false;">
         <div class="input-group">
           <input
             size="100"
@@ -40,7 +40,7 @@
             </button>
           </div>
         </div>
-      </form>
+      </form> -->
 
       <ul class="navbar-nav ml-auto mr-4 mt-2">
         <li class="nav-item dropdown" id="listItem">
@@ -56,9 +56,9 @@
             Browse
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <!-- <router-link class="dropdown-item" :to="{ name: 'home' }">
+            <router-link class="dropdown-item" :to="{ name: 'home' }">
               Home
-            </router-link> -->
+            </router-link>
             <router-link class="dropdown-item" :to="{ name: 'AllFlights' }">
               Flights
             </router-link>
@@ -144,11 +144,10 @@
 
 <script>
 export default {
-  name: "NavBar",
+  // name: "NavBar",
   //   props: ["cartCount", "token", "isAdmin"],
   data() {
     return {
-      searchedItem: "",
     };
   },
   methods: {},
@@ -159,34 +158,6 @@ export default {
 <style scoped>
 .nav-link {
   color: rgba(255, 255, 255);
-}
-
-#search-button-navbar {
-  background-color: #56a5ec;
-  border-color: #56a5ec;
-  border-radius: 5%;
-}
-
-#search-button-navbar:hover {
-  cursor: pointer;
-  transition: 0.3s;
-  background-color: white;
-  color: black;
-  border-color: black;
-}
-
-#nav-cart-count {
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 15px;
-  height: 15px;
-  font-size: 15px;
-  margin-left: 10px;
 }
 
 #cart {

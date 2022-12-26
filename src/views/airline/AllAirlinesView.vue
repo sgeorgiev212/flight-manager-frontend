@@ -8,17 +8,16 @@
         </router-link>
       </div>
     </div>
-    <!-- <div class="row"> {{ this.airlines[0] }}</div> -->
+    <div class="row"> {{ airlines }}</div>
     <div class="row">
        <div v-for="airline of airlines" :key="airline.id" class="col-xl-4 col-md-6 col-12 pt-3 d-flex">
-        <AirlineBox :airline="airline"/>
+        <AirlineBox :airline="airline"></AirlineBox>
        </div>
     </div>
   </div>
 </template>
 
 <script>
-// import AirlineBox from "../../components/airline/AirlineBox.vue";
 import axios from "axios";
 import swal from "sweetalert";
 import AirlineBox from '../../components/airline/AirlineBox.vue';

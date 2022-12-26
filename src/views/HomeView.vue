@@ -26,7 +26,7 @@
           :key="index"
           class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex"
         >
-          <AirlineBox :airline="airlines[index-1]"></AirlineBox>
+          <AirlineBox :airline="this.airlines[index-1]"></AirlineBox>
         </div>
          {{airlines}}
       </div>
@@ -41,7 +41,7 @@
           :key="index"
           class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex"
         >
-          <TravelAgencyBox :agency="travelAgencies[index-1]"></TravelAgencyBox>
+          <TravelAgencyBox :agency="this.travelAgencies[index-1]"></TravelAgencyBox>
         </div>
           {{airlines}}
       </div>
@@ -64,6 +64,7 @@ export default {
   },
 
   mounted() {
+    // emit
     this.airlinesSize = Math.min(6, this.airlines.length);
     this.travelAgenciesSize = Math.min(6, this.travelAgencies.length);
   },

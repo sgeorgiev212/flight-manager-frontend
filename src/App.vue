@@ -5,7 +5,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav> -->
-    <router-view 
+    <div style="min-height: 80vh">
+    <router-view
     :baseUrl="baseUrl" 
     :flights="flights"
     :airlines="airlines"
@@ -17,6 +18,7 @@
     @getAllAirports="getAllAirports"
     > 
     </router-view>
+    </div>
     <FooterComponent/>
   </div>
 </template>
@@ -50,6 +52,41 @@ export default {
             icon: "warning",
           });
         });
+
+       await axios
+        .get(this.baseUrl + "/airline")
+        .then((res) => (this.airlines = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+
+           await axios
+        .get(this.baseUrl + "/agencies")
+        .then((res) => (this.travelAgencies = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+
+
+        await axios
+        .get(this.baseUrl + "/airports")
+        .then((res) => (this.airports = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        }); 
+      
     },
 
     async getAllAirlines() {
@@ -95,9 +132,9 @@ export default {
 
   mounted() {
     this.getAllFlights();
-    this.getAllAirlines();
-    this.getAllTravelAgencies();
-    this.getAllAirports();
+    // this.getAllAirlines();
+    // this.getAllTravelAgencies();
+    // this.getAllAirports();
   },
 };
 </script>

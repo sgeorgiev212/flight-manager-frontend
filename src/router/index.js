@@ -11,6 +11,7 @@ import AllTravelAgencies from '../views/travel agency/AllTravelAgencies.vue'
 import AddAgency from '../views/travel agency/AddAgency.vue'
 import EditAgency from '../views/travel agency/EditAgency.vue'
 import EditAirline from '../views/airline/EditAirline.vue'
+import AirlineDetails from '../views/airline/AirlineDetails.vue'
 
 const routes = [
   {
@@ -80,6 +81,11 @@ const routes = [
     path: '/airlines/edit/:id',
     name: 'EditAirline',
     component: EditAirline
+  },
+  {
+    path: '/airlines/:id',
+    name: 'AirlineDetails',
+    component: AirlineDetails
   },
 ]
   

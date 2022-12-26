@@ -1,14 +1,24 @@
 <template>
-  <div>
+   <div class="col-md-12 mt-5">
+    <h3>Admin page</h3>
+    <hr />
+  </div>
+  <div class="container py-4">
+    <div>
     <router-link :to="{ name: 'AllFlights' }">
-      <button class="btn btn-large" id="adminBtn">Admin flights</button>
+      <button class="btn btn-large" id="adminBtn">Manage flights</button>
     </router-link>
+    </div>
+      <div>
     <router-link :to="{ name: 'AllAirlinesView' }">
-      <button class="btn btn-large" id="adminBtn">Admin airlines</button>
+      <button class="btn btn-large" id="adminBtn">Manage airlines</button>
     </router-link>
+       </div>
+      <div>
     <router-link :to="{ name: 'AllTravelAgencies' }">
-      <button class="btn btn-large" id="adminBtn">Admin travel agencies</button>
+      <button class="btn btn-large" id="adminBtn">Manage travel agencies</button>
     </router-link>
+       </div>
   </div>
 </template>
 <script>

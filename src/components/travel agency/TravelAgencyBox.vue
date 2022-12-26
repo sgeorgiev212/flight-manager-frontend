@@ -10,7 +10,7 @@
     <div class="card-body">
       <h5 class="card-title">Name: {{ agency.name }}</h5>
       <p class="card-text">Address: {{ agency.address }}</p>
-      <router-link :to="{name: 'EditAgency', params: {id: agency.id}}" v-show="$route.name=='AllTravelAgencies'">
+      <router-link :to="{name: 'EditAgency', params: {id: agency.id} }" v-show="$route.name=='AllTravelAgencies'">
       <button class="btn" id="editBtn">Edit</button>
       </router-link>
     </div>
