@@ -15,6 +15,7 @@ import AirlineDetails from '../views/airline/AirlineDetails.vue'
 import AgencyDetails from '../views/travel agency/AgencyDetails.vue'
 import FlightDetails from '../views/flight/FlightDetails.vue'
 import EditFlight from '../views/flight/EditFlight.vue'
+import SignUp from '../views/passenger/SignUp.vue'
 
 const routes = [
   {
@@ -31,7 +32,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/signin',
+    path: '/signIn',
     name: 'SignIn',
     component: SignIn
   },
@@ -104,6 +105,11 @@ const routes = [
     path: '/flights/edit/:id',
     name: 'EditFlight',
     component: EditFlight
+  },
+  {
+    path: '/signUp',
+    name: 'SignUp',
+    component: SignUp
   },
 ]
   

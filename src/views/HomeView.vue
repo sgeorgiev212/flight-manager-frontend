@@ -28,7 +28,7 @@
         >
           <AirlineBox :airline="this.airlines[index-1]"></AirlineBox>
         </div>
-         {{airlines}}
+         current user: {{currentUser}}
       </div>
       <div class="row">
         <div class="col-12 text-center">
@@ -43,7 +43,7 @@
         >
           <TravelAgencyBox :agency="this.travelAgencies[index-1]"></TravelAgencyBox>
         </div>
-          {{airlines}}
+          <!-- {{airlines}} -->
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@ import AirlineBox from "../components/airline/AirlineBox.vue";
 import TravelAgencyBox from '../components/travel agency/TravelAgencyBox.vue';
 export default {
   name: "HomeView",
-  props: ["airlines", "travelAgencies"],
+  props: ["airlines", "travelAgencies", "currentUser"],
   components: { AirlineBox, TravelAgencyBox },
   data() {
     return {

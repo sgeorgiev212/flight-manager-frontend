@@ -43,7 +43,7 @@
       </form> -->
 
       <ul class="navbar-nav ml-auto mr-4 mt-2">
-        <li class="nav-item dropdown" id="listItem">
+        <li class="nav-item dropdown mr-4" id="listItem">
           <a
             class="nav-link text-light dropdown-toggle"
             href="#"
@@ -77,7 +77,7 @@
           </div>
         </li>
 
-        <!-- <li class="nav-item dropdown" id="listItem">
+        <li class="nav-item dropdown mr-4" id="listItem">
           <a
             class="nav-link text-light dropdown-toggle"
             href="#"
@@ -91,52 +91,36 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <router-link
-              v-if="!token"
               :to="{ name: 'SignUp' }"
               class="dropdown-item"
             >
               Sign up
             </router-link>
-            <router-link
+            <!-- <router-link
               v-if="!token"
               :to="{ name: 'SignIn' }"
               class="dropdown-item"
             >
               Sign in
-            </router-link>
-            <router-link
+            </router-link> -->
+            <!-- <router-link
               v-if="token"
               :to="{ name: 'UserProfile' }"
               class="dropdown-item"
             >
               Profile
-            </router-link>
+            </router-link> -->
             <router-link
-              v-if="isAdmin"
-              :to="{ name: 'Admin' }"
+              :to="{ name: 'AdminView' }"
               class="dropdown-item"
             >
               Admin page
             </router-link>
-            <router-link
-              v-if="token"
-              :to="{ name: 'WishList' }"
-              class="dropdown-item"
-            >
-              WishList
-            </router-link>
-            <router-link
-              v-if="token"
-              :to="{ name: 'UserOrders' }"
-              class="dropdown-item"
-            >
-              Orders
-            </router-link>
-            <a v-if="token" class="dropdown-item" href="#" @click="signout">
+            <a class="dropdown-item" href="#" @click="signout">
               Sign out
             </a>
           </div>
-        </li> -->
+        </li>
       </ul>
     </div>
   </nav>

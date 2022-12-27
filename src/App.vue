@@ -12,10 +12,12 @@
     :airlines="airlines"
     :travelAgencies="travelAgencies"
     :airports="airports"
+    :currentUser="currentUser"
     @getAllFlights="getAllFlights"
     @getAllAirlines="getAllAirlines"
     @getAllTravelAgencies="getAllTravelAgencies"
     @getAllAirports="getAllAirports"
+    @setCurrentUser = "setCurrentUser"
     > 
     </router-view>
     </div>
@@ -36,7 +38,8 @@ export default {
       flights: [],
       airlines: [],
       travelAgencies: [],
-      airports: []
+      airports: [],
+      currentUser: {}
     };
   },
 
@@ -93,6 +96,12 @@ export default {
           });
         });
     },
+
+    async setCurrentUser(user) {
+      console.log("set user called");
+      // console.log("current user: " + this.currentUser);
+      this.currentUser = user;
+    }
   },
 
   mounted() {
