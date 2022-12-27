@@ -104,6 +104,13 @@
             >
               Sign in
             </router-link>
+            <router-link
+              v-if="currentUser"
+              :to="{ name: 'PassengerBookings' }"
+              class="dropdown-item"
+            >
+              Bookings
+            </router-link>
             <!-- <router-link
               v-if="!token"
               :to="{ name: 'SignIn' }"

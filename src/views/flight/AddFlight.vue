@@ -69,13 +69,11 @@ export default {
 
         const newFlight = {
             takeoffTime: this.takeoffTime,
-             landTime: this.landTime,
+            landTime: this.landTime,
             takeoffAirport: this.takeoffAirport,
             landAirport: this.landAirport,
             airline: this.airline
         };
-
-    
 
         await axios.post(this.baseUrl + "/airline/flight", newFlight)
         .then((res) => {

@@ -16,6 +16,7 @@ import AgencyDetails from '../views/travel agency/AgencyDetails.vue'
 import FlightDetails from '../views/flight/FlightDetails.vue'
 import EditFlight from '../views/flight/EditFlight.vue'
 import SignUp from '../views/passenger/SignUp.vue'
+import PassengerBookings from '../views/passenger/PassengerBookings.vue'
 
 const routes = [
   {
@@ -110,6 +111,11 @@ const routes = [
     path: '/signUp',
     name: 'SignUp',
     component: SignUp
+  },
+  {
+    path: '/passenger/bookings',
+    name: 'PassengerBookings',
+    component: PassengerBookings
   },
 ]
   
