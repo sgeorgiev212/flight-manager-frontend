@@ -100,7 +100,7 @@ export default {
         .catch((err) => {
          console.log("err", err);
                 swal({
-                 text: err.response.data.msg,
+                 text: err.response.data,
                  icon: "warning"
              }) 
     });

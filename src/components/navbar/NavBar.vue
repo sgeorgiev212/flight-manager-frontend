@@ -119,6 +119,7 @@
               Profile
             </router-link> -->
             <router-link
+              v-if="currentUserType == 'ADMIN'"
               :to="{ name: 'AdminView' }"
               class="dropdown-item"
             >
@@ -138,7 +139,7 @@
 import swall from "sweetalert";
 export default {
   // name: "NavBar",
-    props: ["currentUser"],
+    props: ["currentUser", "currentUserType"],
   data() {
     return {
     };

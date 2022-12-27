@@ -2,6 +2,7 @@
   <div>
     <NavBar
     :currentUser="currentUser"
+    :currentUserType="currentUserType"
     @signOut="signOut"
     >
     </NavBar>
@@ -17,6 +18,7 @@
     :travelAgencies="travelAgencies"
     :airports="airports"
     :currentUser="currentUser"
+    :currentUserType="currentUserType"
     @getAllFlights="getAllFlights"
     @getAllAirlines="getAllAirlines"
     @getAllTravelAgencies="getAllTravelAgencies"
@@ -43,7 +45,8 @@ export default {
       airlines: [],
       travelAgencies: [],
       airports: [],
-      currentUser: {}
+      currentUser: {},
+      currentUserType: ""
     };
   },
 
@@ -104,10 +107,12 @@ export default {
     async setCurrentUser(user) {
       console.log("set user called");
       this.currentUser = user;
+      this.currentUserType = user.role;
     },
 
     async signOut(){
       this.currentUser = null;
+      this.currentUserType = "";
     }
   },
 

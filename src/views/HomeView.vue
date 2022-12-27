@@ -29,6 +29,7 @@
           <AirlineBox :airline="this.airlines[index-1]"></AirlineBox>
         </div>
          current user: {{currentUser}}
+         current type: {{currentUserType}}
       </div>
       <div class="row">
         <div class="col-12 text-center">
@@ -54,7 +55,7 @@ import AirlineBox from "../components/airline/AirlineBox.vue";
 import TravelAgencyBox from '../components/travel agency/TravelAgencyBox.vue';
 export default {
   name: "HomeView",
-  props: ["airlines", "travelAgencies", "currentUser"],
+  props: ["airlines", "travelAgencies", "currentUser", "currentUserType"],
   components: { AirlineBox, TravelAgencyBox },
   data() {
     return {
