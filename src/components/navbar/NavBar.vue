@@ -91,10 +91,18 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <router-link
+              v-if="!currentUser"
               :to="{ name: 'SignUp' }"
               class="dropdown-item"
             >
               Sign up
+            </router-link>
+            <router-link
+              v-if="!currentUser"
+              :to="{ name: 'SignIn' }"
+              class="dropdown-item"
+            >
+              Sign in
             </router-link>
             <!-- <router-link
               v-if="!token"
@@ -116,7 +124,7 @@
             >
               Admin page
             </router-link>
-            <a class="dropdown-item" href="#" @click="signout">
+            <a class="dropdown-item" href="#" @click="signout" v-if="currentUser">
               Sign out
             </a>
           </div>
@@ -127,14 +135,28 @@
 </template>
 
 <script>
+import swall from "sweetalert";
 export default {
   // name: "NavBar",
-  //   props: ["cartCount", "token", "isAdmin"],
+    props: ["currentUser"],
   data() {
     return {
     };
   },
-  methods: {},
+  methods: {
+
+   signout(){
+    this.$emit("signOut");
+          swall({
+        text: "Signed out successfully.",
+        icon: "success",
+        closeOnClickOutside: false,
+      });
+      this.$emit("resetCartCount");
+      this.$router.push({ name: "home" });
+   }
+
+  },
   mounted() {},
 };
 </script>

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <NavBar></NavBar>
+    <NavBar
+    :currentUser="currentUser"
+    @signOut="signOut"
+    >
+    </NavBar>
     <!-- <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -99,8 +103,11 @@ export default {
 
     async setCurrentUser(user) {
       console.log("set user called");
-      // console.log("current user: " + this.currentUser);
       this.currentUser = user;
+    },
+
+    async signOut(){
+      this.currentUser = null;
     }
   },
 
