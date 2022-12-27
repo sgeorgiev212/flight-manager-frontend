@@ -136,6 +136,7 @@ export default {
     async signOut() {
       this.currentUser = null;
       this.currentUserType = "";
+      this.currentAirlineId = null;
     },
   },
 

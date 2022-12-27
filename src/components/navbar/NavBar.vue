@@ -120,6 +120,13 @@
             >
               Bookings
             </router-link>
+             <router-link
+              v-if="currentUser && currentUserType == 'USER'"
+              :to="{ name: 'PassengerTickets' }"
+              class="dropdown-item"
+            >
+              Tickets
+            </router-link>
             <!-- <router-link
               v-if="!token"
               :to="{ name: 'SignIn' }"
@@ -169,7 +176,6 @@ export default {
         icon: "success",
         closeOnClickOutside: false,
       });
-      this.$emit("resetCartCount");
       this.$router.push({ name: "home" });
    }
 
