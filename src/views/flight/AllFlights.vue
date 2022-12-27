@@ -20,7 +20,7 @@
     <div v-for="flight in flights" :key="flight.id" class="row pt-1">
       <div class="col-12">
         <div>
-          <div class="row" id="order-row">
+          <div class="row" id="flight-row">
             <div class="col-3 mt-2 text-left">
               From: {{ flight.takeoffAirport }}
             </div>
@@ -95,7 +95,7 @@ export default {
   transition: 0.4s;
 }
 
-#order-row:hover {
+#flight-row:hover {
   background-color: lightsteelblue;
   transition: 0.4s;
 }
