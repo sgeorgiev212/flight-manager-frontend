@@ -59,20 +59,29 @@
             <router-link class="dropdown-item" :to="{ name: 'home' }">
               Home
             </router-link>
-            <router-link class="dropdown-item" :to="{ name: 'AllFlights' }">
+            <router-link class="dropdown-item" :to="{ name: 'AllFlights' }"  v-if="currentUserType == 'USER'">
               Flights
             </router-link>
             <router-link
+              v-if="currentUserType == 'USER'"
               class="dropdown-item"
               :to="{ name: 'AllAirlinesView' }"
             >
               Airlines
             </router-link>
             <router-link
+             v-if="currentUserType == 'USER'"
               class="dropdown-item"
               :to="{ name: 'AllTravelAgencies' }"
             >
               Travel agencies
+            </router-link>
+              <router-link
+              v-if="currentUserType == 'AIRLINE_MANAGER'"
+              class="dropdown-item"
+              :to="{ name: 'AirlineBookings' }"
+            >
+              Airline bookings
             </router-link>
           </div>
         </li>
@@ -105,7 +114,7 @@
               Sign in
             </router-link>
             <router-link
-              v-if="currentUser"
+              v-if="currentUser && currentUserType == 'USER'"
               :to="{ name: 'PassengerBookings' }"
               class="dropdown-item"
             >

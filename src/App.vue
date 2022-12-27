@@ -1,9 +1,9 @@
 <template>
   <div>
     <NavBar
-    :currentUser="currentUser"
-    :currentUserType="currentUserType"
-    @signOut="signOut"
+      :currentUser="currentUser"
+      :currentUserType="currentUserType"
+      @signOut="signOut"
     >
     </NavBar>
     <!-- <nav>
@@ -11,33 +11,34 @@
       <router-link to="/about">About</router-link>
     </nav> -->
     <div style="min-height: 80vh">
-    <router-view
-    :baseUrl="baseUrl" 
-    :flights="flights"
-    :airlines="airlines"
-    :travelAgencies="travelAgencies"
-    :airports="airports"
-    :currentUser="currentUser"
-    :currentUserType="currentUserType"
-    @getAllFlights="getAllFlights"
-    @getAllAirlines="getAllAirlines"
-    @getAllTravelAgencies="getAllTravelAgencies"
-    @getAllAirports="getAllAirports"
-    @setCurrentUser = "setCurrentUser"
-    > 
-    </router-view>
+      <router-view
+        :baseUrl="baseUrl"
+        :flights="flights"
+        :airlines="airlines"
+        :travelAgencies="travelAgencies"
+        :airports="airports"
+        :currentUser="currentUser"
+        :currentUserType="currentUserType"
+        :currentAirlineId="currentAirlineId"
+        @getAllFlights="getAllFlights"
+        @getAllAirlines="getAllAirlines"
+        @getAllTravelAgencies="getAllTravelAgencies"
+        @getAllAirports="getAllAirports"
+        @setCurrentUser="setCurrentUser"
+      >
+      </router-view>
     </div>
-    <FooterComponent/>
+    <FooterComponent />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import swal from "sweetalert";
-import NavBar from './components/navbar/NavBar.vue'
-import FooterComponent from './components/footer/FooterComponent.vue';
+import NavBar from "./components/navbar/NavBar.vue";
+import FooterComponent from "./components/footer/FooterComponent.vue";
 export default {
-    components: {NavBar, FooterComponent},
+  components: { NavBar, FooterComponent },
   data() {
     return {
       baseUrl: "http://localhost:8888",
@@ -46,7 +47,8 @@ export default {
       travelAgencies: [],
       airports: [],
       currentUser: {},
-      currentUserType: ""
+      currentUserType: "",
+      currentAirlineId: null,
     };
   },
 
@@ -61,7 +63,7 @@ export default {
             text: err.response.data,
             icon: "warning",
           });
-        });     
+        });
     },
 
     async getAllAirlines() {
@@ -75,7 +77,6 @@ export default {
             icon: "warning",
           });
         });
-
     },
 
     async getAllTravelAgencies() {
@@ -104,16 +105,38 @@ export default {
         });
     },
 
-    async setCurrentUser(user) {
+    setCurrentUser(user) {
       console.log("set user called");
       this.currentUser = user;
       this.currentUserType = user.role;
+      if (this.currentUserType == "AIRLINE_MANAGER") {
+        this.findAirlineByManagerId(this.currentUser.id);
+      }
     },
 
-    async signOut(){
+    async findAirlineByManagerId(managerId) {
+      console.log("manage id in method: ", managerId);
+      await axios
+        .get(this.baseUrl + "/airline/manager/" + managerId)
+        .then(
+          (res) => (
+            (this.currentAirlineId = res.data.id),
+            console.log("current airline id id: ", this.currentAirlineId)
+          )
+        )
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+
+    async signOut() {
       this.currentUser = null;
       this.currentUserType = "";
-    }
+    },
   },
 
   mounted() {
