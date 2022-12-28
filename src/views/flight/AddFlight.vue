@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h3 class="pt-3">Add flight</h3>
+        <h3 class="pt-3 mt-5">Add flight</h3>
       </div>
     </div>
     <div class="row">
@@ -51,7 +51,7 @@
           </div>
           <div class="form-group pt-3">
             <label>Airline</label>
-            <select class="form-control" v-model="airline">
+            <select class="form-control" v-model="airline" v-if="!currentAirlineId">
               <option
                 v-for="airine in airlines"
                 :key="airine.id"
@@ -60,6 +60,14 @@
                 {{ airine.name }}
               </option>
             </select>
+              <input
+              type="text"
+              class="form-control"
+              v-model="this.airline.name"
+              readonly
+              style="background-color: white"
+              v-if="currentAirlineId"
+            />
           </div>
           <button
             type="button"
@@ -69,7 +77,12 @@
           >
             Create flight
           </button>
-          <router-link :to="{ name: 'AllFlights' }">
+          <router-link :to="{ name: 'AllFlights' }" v-if="!currentAirlineId">
+            <button type="button" class="btn" id="addAgencyBtn">
+              Back to flights list
+            </button>
+          </router-link>
+          <router-link :to="{ name: 'AllFlightsForAirline' }"  v-if="currentAirlineId">
             <button type="button" class="btn" id="addAgencyBtn">
               Back to flights list
             </button>
@@ -85,7 +98,7 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["airports", "airlines"],
+  props: ["airports", "airlines", "currentAirlineId"],
   data() {
     return {
       takeoffTime: "",
@@ -110,7 +123,7 @@ export default {
         landTime: this.landTime,
         takeoffAirport: this.takeoffAirport,
         landAirport: this.landAirport,
-        airline: this.airline,
+        airline: this.airline.name,
       };
 
       await axios
@@ -132,6 +145,13 @@ export default {
         });
     },
   },
+
+  mounted() {
+    if (this.currentAirlineId){
+      this.airline = this.airlines.find(airline => airline.id == this.currentAirlineId);
+      console.log("current airline name: ", this.airline.name)
+    }
+  }
 };
 </script>
 

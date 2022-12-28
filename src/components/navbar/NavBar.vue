@@ -90,6 +90,13 @@
             >
               All flights for airline
             </router-link>
+              <router-link
+              v-if="currentUserType == 'AIRLINE_MANAGER'"
+              class="dropdown-item"
+              :to="{ name: 'AddFlight' }"
+            >
+              Add flight for airline
+            </router-link>
           </div>
         </li>
 

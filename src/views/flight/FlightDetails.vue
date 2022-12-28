@@ -83,6 +83,7 @@
             </button>
           </router-link>
           <button
+           v-if="currentUserType == 'USER'"
             type="button ml-2"
             class="btn"
             id="detailsBtn"
