@@ -83,6 +83,13 @@
             >
               Airline bookings
             </router-link>
+              <router-link
+              v-if="currentUserType == 'AIRLINE_MANAGER'"
+              class="dropdown-item"
+              :to="{ name: 'AllFlightsForAirline' }"
+            >
+              All flights for airline
+            </router-link>
           </div>
         </li>
 
@@ -162,7 +169,7 @@
 import swall from "sweetalert";
 export default {
   // name: "NavBar",
-    props: ["currentUser", "currentUserType"],
+    props: ["currentUser", "currentUserType", "currentAirlineId"],
   data() {
     return {
     };

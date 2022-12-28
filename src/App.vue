@@ -3,6 +3,7 @@
     <NavBar
       :currentUser="currentUser"
       :currentUserType="currentUserType"
+      :currentAirlineId="currentAirlineId"
       @signOut="signOut"
     >
     </NavBar>

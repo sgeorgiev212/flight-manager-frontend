@@ -72,7 +72,12 @@
               style="background-color: white"
             />
           </div>
-          <router-link :to="{ name: 'AllFlights' }">
+          <router-link :to="{ name: 'AllFlights' }" v-if="currentUserType == 'USER'">
+            <button type="button" class="btn mr-2" id="detailsBtn">
+              Back to flights list
+            </button>
+          </router-link>
+           <router-link :to="{ name: 'AllFlightsForAirline' }" v-if="currentUserType == 'AIRLINE_MANAGER'">
             <button type="button" class="btn mr-2" id="detailsBtn">
               Back to flights list
             </button>
@@ -106,7 +111,7 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["flights", "currentUser", "baseUrl"],
+  props: ["flights", "currentUser", "baseUrl", "currentUserType"],
   data() {
     return {
       flight: {},
