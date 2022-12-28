@@ -16,7 +16,7 @@
         :to="{ name: 'EditAgency', params: { id: agency.id } }"
         v-show="$route.name == 'AllTravelAgencies'"
       >
-        <button class="btn" id="editBtn">Edit</button>
+        <button class="btn" id="editBtn" v-if="currentUserType == 'ADMIN' || currentUserType == 'AIRLINE_MANAGER'">Edit</button>
       </router-link>
     </div>
   </div>

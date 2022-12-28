@@ -96,6 +96,7 @@
               type="button ml-2"
               class="btn mt-3"
               id="detailsBtn"
+              v-if="currentUserType == 'ADMIN' || currentUserType == 'AIRLINE_MANAGER'"
               @click="goToEditPage"
             >
               Edit flight
