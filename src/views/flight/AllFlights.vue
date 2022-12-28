@@ -4,6 +4,7 @@
       <div class="col-12 text-center">
         <h3 class="pt-3">All flights</h3>
         <router-link
+          v-if="currentUserType == 'ADMIN'"
           :to="{ name: 'AddFlight' }"
           style="float: right"
           class="mt-3"
@@ -44,7 +45,7 @@
 </template>
 <script>
 export default {
-  props: ["flights"],
+  props: ["flights", "currentUserType"],
   data() {
     return {
       //   flights: [],

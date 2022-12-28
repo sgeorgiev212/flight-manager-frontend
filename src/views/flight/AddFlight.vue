@@ -11,31 +11,69 @@
         <form>
           <div class="form-group pt-3">
             <label>Takeoff time</label>
-            <input type="datetime-local" class="form-control" v-model="takeoffTime" />
+            <input
+              type="datetime-local"
+              class="form-control"
+              v-model="takeoffTime"
+            />
           </div>
           <div class="form-group pt-3">
             <label>Land time</label>
-            <input type="datetime-local" class="form-control" v-model="landTime" />
+            <input
+              type="datetime-local"
+              class="form-control"
+              v-model="landTime"
+            />
           </div>
           <div class="form-group pt-3">
             <label>Takeoff airport</label>
             <select class="form-control" v-model="takeoffAirport">
-              <option v-for="airport in airports" :key="airport.id" :value="airport.name">{{ airport.name }}</option>
+              <option
+                v-for="airport in airports"
+                :key="airport.id"
+                :value="airport.name"
+              >
+                {{ airport.name }}
+              </option>
             </select>
           </div>
           <div class="form-group pt-3">
             <label>Land airport</label>
-             <select class="form-control" v-model="landAirport">
-              <option v-for="airport in airports" :key="airport.id" :value="airport.name">{{ airport.name }}</option>
+            <select class="form-control" v-model="landAirport">
+              <option
+                v-for="airport in airports"
+                :key="airport.id"
+                :value="airport.name"
+              >
+                {{ airport.name }}
+              </option>
             </select>
           </div>
           <div class="form-group pt-3">
             <label>Airline</label>
-              <select class="form-control" v-model="airline">
-              <option v-for="airine in airlines" :key="airine.id" :value="airine.name">{{ airine.name }}</option>
+            <select class="form-control" v-model="airline">
+              <option
+                v-for="airine in airlines"
+                :key="airine.id"
+                :value="airine.name"
+              >
+                {{ airine.name }}
+              </option>
             </select>
           </div>
-          <button type="button" class="btn" id="addFlightBtn" @click="addFlight">Create flight</button>
+          <button
+            type="button"
+            class="btn mr-3 mt-4"
+            id="addFlightBtn"
+            @click="addFlight"
+          >
+            Create flight
+          </button>
+          <router-link :to="{ name: 'AllFlights' }">
+            <button type="button" class="btn" id="addAgencyBtn">
+              Back to flights list
+            </button>
+          </router-link>
         </form>
       </div>
       <div class="col-3"></div>
@@ -55,27 +93,28 @@ export default {
       takeoffAirport: "",
       landAirport: "",
       airline: "",
-      baseUrl: "http://localhost:8888"
+      baseUrl: "http://localhost:8888",
     };
   },
 
   methods: {
     async addFlight() {
-        console.log("takeoff time ", this.takeoffTime);
-        console.log("landTime time ", this.landTime);
-        console.log("takeoffAirport ", this.takeoffAirport);
-        console.log("landAirport ", this.landAirport);
-        console.log("airline ", this.airline);
+      console.log("takeoff time ", this.takeoffTime);
+      console.log("landTime time ", this.landTime);
+      console.log("takeoffAirport ", this.takeoffAirport);
+      console.log("landAirport ", this.landAirport);
+      console.log("airline ", this.airline);
 
-        const newFlight = {
-            takeoffTime: this.takeoffTime,
-            landTime: this.landTime,
-            takeoffAirport: this.takeoffAirport,
-            landAirport: this.landAirport,
-            airline: this.airline
-        };
+      const newFlight = {
+        takeoffTime: this.takeoffTime,
+        landTime: this.landTime,
+        takeoffAirport: this.takeoffAirport,
+        landAirport: this.landAirport,
+        airline: this.airline,
+      };
 
-        await axios.post(this.baseUrl + "/airline/flight", newFlight)
+      await axios
+        .post(this.baseUrl + "/airline/flight", newFlight)
         .then((res) => {
           if (res.status == 200) {
             swal({
@@ -84,24 +123,24 @@ export default {
             });
           }
         })
-           .catch((err) => {
-         console.log("err", err);
-                swal({
-                 text: err.response.data,
-                 icon: "warning"
-             }) 
-    });
-    }
-  }
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+  },
 };
 </script>
 
 <style>
-#addFlightBtn{
+#addFlightBtn {
   border-color: black;
 }
 
-#addFlightBtn:hover{
+#addFlightBtn:hover {
   background-color: #08457e;
   border-color: #08457e;
   color: white;

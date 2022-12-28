@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 mt-5">
         <h4>All travel agancies</h4>
-        <router-link :to="{name: 'AddAgency'}" style="float:right" class="mt-3">
+        <router-link :to="{name: 'AddAgency'}" style="float:right" class="mt-3" v-if="currentUserType == 'ADMIN'">
          <button id="addAgencyBtn">Add travel agency</button>
         </router-link>
       </div>
@@ -23,7 +23,7 @@
 import TravelAgencyBox from "../../components/travel agency/TravelAgencyBox.vue";
 export default {
   components: { TravelAgencyBox },
-  props: ["travelAgencies"],
+  props: ["travelAgencies", "currentUserType"],
 };
 </script>
 <style>

@@ -17,9 +17,14 @@
             <label>Address</label>
             <input type="text" class="form-control" v-model="address" />
           </div>
-          <button type="button" class="btn" id="addAirlineBtn" @click="addAirline">
+          <button type="button" class="btn mr-3 mt-4" id="addAirlineBtn" @click="addAirline">
             Add airline
           </button>
+            <router-link :to="{ name: 'AllAirlinesView' }">
+            <button type="button" class="btn" id="addAgencyBtn">
+              Back to airlines list
+            </button>
+          </router-link>
         </form>
       </div>
       <div class="col-3"></div>

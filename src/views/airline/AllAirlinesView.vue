@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 text-center">
         <h3 class="pt-3">All airlines</h3>
-        <router-link :to="{name : 'AddAirline'}">
+        <router-link :to="{name : 'AddAirline'}" v-if="currentUserType == 'ADMIN'">
           <button class="btn" id="addAirlineBtn" style="float:right">Add new airline</button>
         </router-link>
       </div>
@@ -24,6 +24,7 @@ import AirlineBox from '../../components/airline/AirlineBox.vue';
 export default {
   name: "AllAirlines",
   components: {AirlineBox},
+  props: ["currentUserType"],
   data() {
     return {
       baseUrl: "http://localhost:8888",
