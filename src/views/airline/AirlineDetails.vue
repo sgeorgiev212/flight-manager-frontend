@@ -51,15 +51,15 @@
       <div class="col-12 mt-1 pt-4">
         <div v-for="review in reviews" :key="review.id">
           <div style="">
-            <!-- <div class="col-md-3 mt-3">
+            <div class="col-md-3 mt-3">
               <img
                 class=""
-                :src="review.reviewerImageUrl"
+                :src="review.reviewer.pictureUrl"
                 alt=""
                 id="reviewer-image"
                 style="float: left"
               />
-            </div> -->
+            </div>
             <div class="row">
               <div class="col-md-4">
                 <div>

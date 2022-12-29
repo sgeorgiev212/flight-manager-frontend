@@ -45,15 +45,15 @@
       <div class="col-12 mt-1 pt-4">
         <div v-for="review in reviews" :key="review.id">
           <div style="">
-            <!-- <div class="col-md-3 mt-3">
+            <div class="col-md-3 mt-3">
               <img
                 class=""
-                :src="review.reviewerImageUrl"
+                :src="review.reviewer.pictureUrl"
                 alt=""
                 id="reviewer-image"
                 style="float: left"
               />
-            </div> -->
+            </div>
             <div class="row">
               <div class="col-md-4">
                 <div>
@@ -204,5 +204,11 @@ export default {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
+}
+
+#reviewer-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 75%;
 }
 </style>
