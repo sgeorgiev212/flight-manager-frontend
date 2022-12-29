@@ -4,7 +4,7 @@
         <div class="col-md-3 border-right" id="parentLayout">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5" id="imageLayout">
                  <img class="userImage" 
-                 src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE="
+                 :src=currentUser.pictureUrl
                  width="200" height="200"/>
                  <br>
                  <span><h5>Role: {{ currentUser.role }}</h5></span>
@@ -23,7 +23,8 @@
                     <div class="col-md-6"><label class="labels">Email</label><p class="user-profile-paragraph" align="left"> {{currentUser.email}}</p></div>
                     <br><br>
                      <div class="col-md-6"><label class="labels">Address</label><p class="user-profile-paragraph" align="left"> {{currentUser.address}}</p></div>
-                     <div class="col-md-6"><label class="labels">Phone number</label><p class="user-profile-paragraph" align="left"> {{currentUser.address}}</p></div>
+                     <div class="col-md-6"><label class="labels">Phone number</label><p class="user-profile-paragraph" align="left"> {{currentUser.phoneNumber}}</p></div>
+                     <div class="col-md-6"><label class="labels">Age</label><p class="user-profile-paragraph" align="left"> {{currentUser.age}}</p></div>
                 </div>
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="edit-btn" type="button" @click="goToEditPage">Edit profile</button></div>
             </div>

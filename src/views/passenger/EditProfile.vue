@@ -7,10 +7,10 @@
                  width="200" height="200"/>
                  <br>
                  <label>Picture URL:</label>
-                 <input type="text" class="form-control" v-model="firstName">
+                 <input type="text" class="form-control" v-model="pictureUrl">
                  <br><br>
-                 <label>Role</label>
-                 <span><h5><input type="text" class="form-control" v-model="firstName"></h5></span>
+                 <!-- <label>Role</label>
+                 <span><h5><input type="text" class="form-control" v-model="firstName"></h5></span> -->
                  current user: {{currentUserId}}
                  </div>
         </div>
@@ -27,7 +27,8 @@
                     <div class="col-md-6"><label class="labels">Email</label><input type="text" class="form-control" v-model="email"></div>
                     <div class="col-md-6"><label class="labels">Address</label><input type="text" class="form-control" v-model="address"></div>
                     <br><br>
-                    <div class="col-md-6 mt-3"><label class="labels">Phone number</label><input type="text" class="form-control" v-model="email"></div>
+                    <div class="col-md-6 mt-3"><label class="labels">Phone number</label><input type="text" class="form-control" v-model="phoneNumber"></div>
+                    <div class="col-md-6 mt-3"><label class="labels">Age</label><input type="text" class="form-control" v-model="age"></div>
                 </div>
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="edit-btn" type="button" @click="applyChanges">Apply changes</button></div>
                 <div class="row mt-3">
@@ -68,6 +69,9 @@ import swal from 'sweetalert'
             lastName: "",
             email: "",
             address: "",
+            pictureUrl: "",
+            phoneNumber: "",
+            age: "",
             newPassword: "",
             currentPassword: "",
          }
@@ -97,7 +101,9 @@ import swal from 'sweetalert'
                lastName: this.lastName,
                email: this.email,
                address: this.address,
-            //    imageUrl: this.currentUser.imageUrl
+               pictureUrl: this.pictureUrl,
+               phoneNumber: this.phoneNumber,
+               age: this.age
             };
          await axios.put(this.baseUrl+"/passenger/" + this.currentUserId, changes)
          .then((res) => {
@@ -114,7 +120,7 @@ import swal from 'sweetalert'
                 console.log("err", err);
                 console.log("err data", err.response);
                 swal({
-                 text: err.response.data.msg,
+                 text: err.response.data,
                  icon: "warning"
              })
             });
@@ -179,6 +185,9 @@ import swal from 'sweetalert'
         this.lastName = this.currentUser.lastName,
         this.email = this.currentUser.email,
         this.address = this.currentUser.address
+        this.pictureUrl = this.currentUser.pictureUrl;
+        this.phoneNumber = this.currentUser.phoneNumber
+        this.age = this.currentUser.age;
      }
  };
 </script>
