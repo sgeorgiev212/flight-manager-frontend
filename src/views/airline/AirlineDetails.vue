@@ -12,6 +12,12 @@
       <div class="col-md-6 col-12 pt-3 pt-md-0">
         <h4>Name: {{ airline.name }}</h4>
         <h4>Address: {{ airline.address }}</h4>
+         <router-link
+        :to="{ name: 'AllFlightsForAirline'}"
+        @click="assignAirlineId"
+      >
+        <a>Check flights for airline</a>
+      </router-link>
       </div>
     </div>
     <div class="row pt-5">
@@ -30,7 +36,7 @@
       </div>
       <div class="mt-3 form-group col-12" v-if="!isHidden" style="float: left">
         <!-- <label>Add your review</label> -->
-        <textarea v-model="userReview" id="reviewBox"/>
+        <textarea v-model="userReview" id="reviewBox" />
       </div>
       <div class="mt-3 form-group col-12">
         <button
@@ -71,6 +77,7 @@
               </div>
               <div class="col-md-8" style="text-align: right">
                 <button
+                  v-if="currentUserType == 'ADMIN'"
                   class="btn btn-primary"
                   id="deleteBtn"
                   @click="deleteReview(review.reviewId, review)"
@@ -97,12 +104,13 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["baseUrl", "airlines"],
+  props: ["baseUrl", "airlines", "currentUser"],
   data() {
     return {
       airline: {},
       reviews: {},
       isHidden: true,
+      userReview: null,
     };
   },
 
@@ -111,6 +119,39 @@ export default {
       axios
         .get(this.baseUrl + "/airline/" + this.id + "/reviews")
         .then((res) => (this.reviews = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+
+    assignAirlineId() {
+      this.$emit("assignAirlineId", this.airline.airlineId);
+    },
+
+    submitReview() {
+      const review = {
+        reviewerId: this.currentUser.id,
+        airlineId: this.airline.id,
+        review: this.userReview,
+      };
+
+      axios
+        .post(this.baseUrl + "/passenger/reviews/airline", review)
+        .then((res) => {
+            if (res.status == 200) {
+              this.$emit("getAllAirlines")
+              this.getAirlineReviews();
+              this.isHidden = !this.isHidden;
+              swal({
+              text: "Review added successfully!",
+              icon: "success",
+            });
+          }
+        })
         .catch((err) => {
           console.log("err", err);
           swal({
@@ -164,7 +205,7 @@ export default {
   transition: 0.4s;
 }
 
-  #reviewBox {
+#reviewBox {
   width: 100%;
   border: 2px solid #ccc;
   border-radius: 4px;

@@ -21,11 +21,14 @@
         :currentUser="currentUser"
         :currentUserType="currentUserType"
         :currentAirlineId="currentAirlineId"
+        :reviews="reviews"
         @getAllFlights="getAllFlights"
         @getAllAirlines="getAllAirlines"
         @getAllTravelAgencies="getAllTravelAgencies"
         @getAllAirports="getAllAirports"
         @setCurrentUser="setCurrentUser"
+        @getAgencyReviews="getAgencyReviews"
+        @assignAirlineId="assignAirlineId"
       >
       </router-view>
     </div>
@@ -50,6 +53,7 @@ export default {
       currentUser: {},
       currentUserType: "",
       currentAirlineId: null,
+      reviews: []
     };
   },
 
@@ -125,6 +129,25 @@ export default {
             console.log("current airline id id: ", this.currentAirlineId)
           )
         )
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+
+    assignAirlineId(id){
+      this.currentAirlineId = id;
+    },
+
+      async getAgencyReviews(agencyId) {
+      console.log("called get reviews agency");
+      await axios
+        .get(this.baseUrl + "/agencies/" + agencyId + "/reviews")
+        .then((res) => (this.reviews = res.data,
+         console.log("inside 200 success")))
         .catch((err) => {
           console.log("err", err);
           swal({

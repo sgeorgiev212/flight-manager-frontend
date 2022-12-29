@@ -71,6 +71,7 @@
               </div>
               <div class="col-md-8" style="text-align: right">
                 <button
+                  v-if="currentUserType == 'ADMIN'"
                   class="btn btn-primary"
                   id="deleteBtn"
                   @click="deleteReview(review.reviewId, review)"
@@ -97,24 +98,57 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["baseUrl", "travelAgencies"],
+  props: ["baseUrl", "travelAgencies", "currentUser", "reviews"],
   data() {
     return {
       agency: {},
-      reviews: {},
+      // reviews: {},
       isHidden: true,
+      userReview: null,
     };
   },
 
   methods: {
-    getAgencyReviews() {
+    // getAgencyReviews(agencyId) {
+    //   console.log("called get reviews agency");
+    //   axios
+    //     .get(this.baseUrl + "/agenices/" + agencyId + "/reviews")
+    //     .then((res) => (this.reviews = res.data,
+    //      console.log("inside 200 success")))
+    //     .catch((err) => {
+    //       console.log("err", err);
+    //       swal({
+    //         text: err.response.data,
+    //         icon: "warning",
+    //       });
+    //     });
+    // },
+
+      submitReview() {
+      const review = {
+        reviewerId: this.currentUser.id,
+        agencyId: this.agency.id,
+        review: this.userReview,
+      };
+
       axios
-        .get(this.baseUrl + "/agenices/" + this.id + "/reviews")
-        .then((res) => (this.reviews = res.data))
+        .post(this.baseUrl + "/passenger/reviews/agency", review)
+        .then((res) => {
+            if (res.status == 200) {
+              this.$emit("getAllTravelAgencies")
+              this.$emit("getAgencyReviews", this.id)
+              // this.getAgencyReviews();
+              this.isHidden = !this.isHidden;
+              swal({
+              text: "Review added successfully!",
+              icon: "success",
+            });
+          }
+        })
         .catch((err) => {
           console.log("err", err);
           swal({
-            text: err.response.data,
+            text: err.response,
             icon: "warning",
           });
         });
@@ -131,8 +165,9 @@ export default {
 
   mounted() {
     this.id = this.$route.params.id;
+     this.$emit("getAgencyReviews", this.id)
     this.agency = this.travelAgencies.find((agency) => agency.id == this.id);
-    this.getAgencyReviews();
+    // this.getAgencyReviews();
     this.scrollToTop();
   },
 };

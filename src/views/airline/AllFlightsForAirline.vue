@@ -95,24 +95,23 @@ export default {
 
     sortFlightsByDate() {
       if (!this.takeoffTime) {
-         this.getAllFlightsForAirline();
+        this.getAllFlightsForAirline();
       } else {
+        const requestBody = {
+          airlineId: this.currentAirlineId,
+          takeoffDate: this.takeoffTime,
+        };
 
-      const requestBody = {
-        airlineId: this.currentAirlineId,
-        takeoffDate: this.takeoffTime,
-      };
-
-      axios
-        .post(this.baseUrl + "/airline/flights", requestBody)
-        .then((res) => (this.flights = res.data))
-        .catch((err) => {
-          console.log("err", err);
-          swal({
-            text: err.response.data,
-            icon: "warning",
+        axios
+          .post(this.baseUrl + "/airline/flights", requestBody)
+          .then((res) => (this.flights = res.data))
+          .catch((err) => {
+            console.log("err", err);
+            swal({
+              text: err.response.data,
+              icon: "warning",
+            });
           });
-        });
       }
     },
 
