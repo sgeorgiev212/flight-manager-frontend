@@ -19,6 +19,7 @@
         :travelAgencies="travelAgencies"
         :airports="airports"
         :currentUser="currentUser"
+        :currentUserId="currentUserId"
         :currentUserType="currentUserType"
         :currentAirlineId="currentAirlineId"
         :reviews="reviews"
@@ -29,6 +30,8 @@
         @setCurrentUser="setCurrentUser"
         @getAgencyReviews="getAgencyReviews"
         @assignAirlineId="assignAirlineId"
+        @setCurrentUserId="setCurrentUserId"
+        @updateCurrentUser="updateCurrentUser"
       >
       </router-view>
     </div>
@@ -51,6 +54,7 @@ export default {
       travelAgencies: [],
       airports: [],
       currentUser: {},
+      currentUserId: null,
       currentUserType: "",
       currentAirlineId: null,
       reviews: []
@@ -117,6 +121,25 @@ export default {
       if (this.currentUserType == "AIRLINE_MANAGER") {
         this.findAirlineByManagerId(this.currentUser.id);
       }
+    },
+
+    setCurrentUserId(id) {
+       console.log("set user  id called");
+       this.currentUserId = id;
+        console.log("currentId: ", this.currentUserId);
+    },
+
+    async updateCurrentUser() {
+      await axios
+        .get(this.baseUrl + "/passenger/" + this.currentUserId)
+        .then((res) => (this.currentUser = res.data))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        }); 
     },
 
     async findAirlineByManagerId(managerId) {

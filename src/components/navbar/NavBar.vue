@@ -141,6 +141,13 @@
             >
               Tickets
             </router-link>
+             <router-link
+              v-if="currentUser && currentUserType == 'USER'"
+              :to="{ name: 'PassengerProfile' }"
+              class="dropdown-item"
+            >
+              Profile
+            </router-link>
             <!-- <router-link
               v-if="!token"
               :to="{ name: 'SignIn' }"

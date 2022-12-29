@@ -86,6 +86,7 @@ export default {
               icon: "success",
             });
             console.log("user", this.user);
+            this.$emit("setCurrentUserId", this.user.id);
             this.$emit("setCurrentUser", this.user);
             // console.log("user role id: ",this.user.role.id);
             // if (this.user.role.id == 2)
