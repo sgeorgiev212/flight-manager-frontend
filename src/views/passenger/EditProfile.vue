@@ -32,7 +32,7 @@
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="edit-btn" type="button" @click="applyChanges">Apply changes</button></div>
                 <div class="row mt-3">
                  <div class="col-md-12 mt-1"><h5 class="text-left">Password management</h5></div>
-                    <div class="col-md-6 mt-3"><label class="labels">Current password</label><input type="password" class="form-control" id="pwdField">
+                    <div class="col-md-6 mt-3"><label class="labels">Current password</label><input type="password" class="form-control" id="pwdField" v-model="currentPassword">
                                     <div class="mt-2" style="text-align: left">
                 <input type="checkbox" @click="togglePassword()" /> Show password
               </div>
@@ -63,34 +63,33 @@ import swal from 'sweetalert'
      data(){
          return{
             selectedPicture: null,
-            currentUserPassword: null,
             user : null,
             firstName: "",
             lastName: "",
             email: "",
             address: "",
-            newPassword: ""
-
+            newPassword: "",
+            currentPassword: "",
          }
      },
 
      methods: {
 
-    async findCurrentUser() {
-         await axios
-        .get(this.baseUrl + "/passenger/" + this.currentUserId)
-        .then((res) => {
-            this.user = res.data;
-            console.log("in find method user: " + this.user);
-            })
-        .catch((err) => {
-          console.log("err", err);
-          swal({
-            text: err.response.data,
-            icon: "warning",
-          });
-        }); 
-    },
+    // async findCurrentUser() {
+    //      await axios
+    //     .get(this.baseUrl + "/passenger/" + this.currentUserId)
+    //     .then((res) => {
+    //         this.user = res.data;
+    //         console.log("in find method user: " + this.user);
+    //         })
+    //     .catch((err) => {
+    //       console.log("err", err);
+    //       swal({
+    //         text: err.response.data,
+    //         icon: "warning",
+    //       });
+    //     }); 
+    // },
 
      async applyChanges(){
           const changes = {
@@ -122,7 +121,7 @@ import swal from 'sweetalert'
          },
 
      async changePassword(){
-       if(!this.currentUserPassword || !this.newPassword){
+       if(!this.currentPassword || !this.newPassword){
            swal({
                  text: "Enter your current password and your new password!",
                  icon: "warning"
@@ -131,24 +130,24 @@ import swal from 'sweetalert'
        } 
        
        const changes = {
-           oldPassword: this.currentUserPassword,
+           password: this.currentPassword,
            newPassword: this.newPassword
        }
 
-       await axios.put(this.requestURL+"/users/update-password?token=" + this.token, changes)
+       await axios.put(this.baseUrl+"/passenger/" + this.currentUserId + "/password", changes)
        .then((res) => {
            if(res.status == 200)
            {
-             this.$router.push({name: 'UserProfile'});
+             this.$router.push({name: 'PassengerProfile'});
              swal({
-                 text: "Profile updated successfully!",
+                 text: "Password updated successfully!",
                  icon: "success"
              })
            } 
        }).catch((err) => {
                 console.log("err", err);
                 swal({
-                 text: err.response.data.msg,
+                 text: err.response.data,
                  icon: "warning"
              })
         });
