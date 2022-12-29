@@ -140,6 +140,7 @@ export default {
 
     assignAirlineId(id){
       this.currentAirlineId = id;
+      console.log("current airline id : " + this.currentAirlineId);
     },
 
       async getAgencyReviews(agencyId) {

@@ -129,7 +129,7 @@ export default {
     },
 
     assignAirlineId() {
-      this.$emit("assignAirlineId", this.airline.airlineId);
+      this.$emit("assignAirlineId", this.airline.id);
     },
 
     submitReview() {

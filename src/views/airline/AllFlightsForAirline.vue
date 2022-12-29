@@ -76,6 +76,7 @@ export default {
     return {
       flights: [],
       takeoffTime: "",
+      currentFlightNumber: 0
     };
   },
 
