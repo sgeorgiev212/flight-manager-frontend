@@ -22,6 +22,8 @@ import PassengerTickets from '../views/passenger/PassengerTickets.vue'
 import AllFlightsForAirline from '../views/airline/AllFlightsForAirline'
 import PassengerProfile from '../views/passenger/PassengerProfile'
 import EditProfile from '../views/passenger/EditProfile.vue'
+import AirlineProfile from '../views/airline/AirlineProfile.vue'
+import EditAirlineProfile from '../views/airline/EditAirlineProfile.vue'
 
 const routes = [
   {
@@ -146,6 +148,16 @@ const routes = [
     path: '/user/profile/edit',
     name: 'EditProfile',
     component: EditProfile
+  },
+  {
+    path: '/airline/profile',
+    name: 'AirlineProfile',
+    component: AirlineProfile
+  },
+  {
+    path: '/airline/profile/edit',
+    name: 'EditAirlineProfile',
+    component: EditAirlineProfile
   },
 ]
   

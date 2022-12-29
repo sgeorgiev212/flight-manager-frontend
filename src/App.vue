@@ -23,6 +23,7 @@
         :currentUserType="currentUserType"
         :currentAirlineId="currentAirlineId"
         :reviews="reviews"
+        :currentAirline="currentAirline"
         @getAllFlights="getAllFlights"
         @getAllAirlines="getAllAirlines"
         @getAllTravelAgencies="getAllTravelAgencies"
@@ -32,6 +33,7 @@
         @assignAirlineId="assignAirlineId"
         @setCurrentUserId="setCurrentUserId"
         @updateCurrentUser="updateCurrentUser"
+        @updateCurrentAirline="updateCurrentAirline"
       >
       </router-view>
     </div>
@@ -56,6 +58,7 @@ export default {
       currentUser: {},
       currentUserId: null,
       currentUserType: "",
+      currentAirline: "",
       currentAirlineId: null,
       reviews: []
     };
@@ -149,7 +152,9 @@ export default {
         .then(
           (res) => (
             (this.currentAirlineId = res.data.id),
-            console.log("current airline id id: ", this.currentAirlineId)
+            this.currentAirline = res.data,
+            console.log("current airline id id: ", this.currentAirlineId),
+            console.log("current airline: ", this.currentAirline)
           )
         )
         .catch((err) => {
@@ -161,6 +166,24 @@ export default {
         });
     },
 
+   async updateCurrentAirline(){
+         await axios
+        .get(this.baseUrl + "/airline/" + this.currentAirlineId)
+        .then(
+          (res) => (
+            this.currentAirline = res.data,
+            console.log("current airline: ", this.currentAirline)
+          )
+        )
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+   },
+   
     assignAirlineId(id){
       this.currentAirlineId = id;
       console.log("current airline id : " + this.currentAirlineId);

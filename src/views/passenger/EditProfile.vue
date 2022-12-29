@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-3 border-right" id="parentLayout">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5" id="imageLayout">
-                 <img class="userImage" src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE=" 
+                 <img class="userImage" :src="pictureUrl"
                  width="200" height="200"/>
                  <br>
                  <label>Picture URL:</label>
@@ -78,23 +78,6 @@ import swal from 'sweetalert'
      },
 
      methods: {
-
-    // async findCurrentUser() {
-    //      await axios
-    //     .get(this.baseUrl + "/passenger/" + this.currentUserId)
-    //     .then((res) => {
-    //         this.user = res.data;
-    //         console.log("in find method user: " + this.user);
-    //         })
-    //     .catch((err) => {
-    //       console.log("err", err);
-    //       swal({
-    //         text: err.response.data,
-    //         icon: "warning",
-    //       });
-    //     }); 
-    // },
-
      async applyChanges(){
           const changes = {
                firstName: this.firstName,
