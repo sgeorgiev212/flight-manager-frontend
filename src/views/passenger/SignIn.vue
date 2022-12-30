@@ -47,6 +47,11 @@
                 >
               </p>
             </div>
+            <div class="col-md-12 pt-3">
+                <router-link :to="{ name: 'ForgotPasswordView' }"
+                  >Forgot your password?</router-link
+                >
+            </div>
           </form>
         </div>
       </div>

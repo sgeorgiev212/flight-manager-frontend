@@ -41,28 +41,46 @@
             <div class="form-group">
               <label>Password</label>
               <input
+                id="passwordField"
                 type="password"
                 class="form-control"
                 v-model="password"
                 required
               />
+              <div class="mt-2" style="text-align: left">
+                <input type="checkbox" @click="togglePassword()" /> Show
+                password
+              </div>
             </div>
             <div class="form-group">
               <label>Confirm password</label>
               <input
+                id="confirmPasswordField"
                 type="password"
                 class="form-control"
                 v-model="confirmPassword"
                 required
               />
+              <div class="mt-2" style="text-align: left">
+                <input type="checkbox" @click="toggleConfirmPassword()" /> Show
+                password
+              </div>
             </div>
-            <button class="btn mt-3" type="button" id="createBtn" @click="signUp">
+            <button
+              class="btn mt-3"
+              type="button"
+              id="createBtn"
+              @click="signUp"
+            >
               Create account
             </button>
           </form>
-           <div class="col-md-12 pt-3">
-              <p>Already have an account? <router-link :to="{name: 'SignIn'}">Sign in here.</router-link></p>
-            </div>
+          <div class="col-md-12 pt-3">
+            <p>
+              Already have an account?
+              <router-link :to="{ name: 'SignIn' }">Sign in here.</router-link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -90,6 +108,7 @@ export default {
         lastName: this.lastName,
         email: this.email,
         password: this.password,
+        confirmPassword: this.confirmPassword,
       };
 
       axios
@@ -111,12 +130,30 @@ export default {
           });
         });
     },
+
+    togglePassword() {
+      var passwordField = document.getElementById("passwordField");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    },
+
+    toggleConfirmPassword() {
+      var passwordField = document.getElementById("confirmPasswordField");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    },
   },
 };
 </script>
 <style>
 #signup {
-    width: 40%;
+  width: 40%;
 }
 
 #createBtn {

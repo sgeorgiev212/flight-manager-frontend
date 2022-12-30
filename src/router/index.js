@@ -24,6 +24,8 @@ import PassengerProfile from '../views/passenger/PassengerProfile'
 import EditProfile from '../views/passenger/EditProfile.vue'
 import AirlineProfile from '../views/airline/AirlineProfile.vue'
 import EditAirlineProfile from '../views/airline/EditAirlineProfile.vue'
+import ForgotPasswordView from '../views/passenger/ForgotPasswordView.vue'
+import ResetPasswordView from '../views/passenger/ResetPasswordView.vue'
 
 const routes = [
   {
@@ -158,6 +160,16 @@ const routes = [
     path: '/airline/profile/edit',
     name: 'EditAirlineProfile',
     component: EditAirlineProfile
+  },
+  {
+    path: '/forgotPassword',
+    name: 'ForgotPasswordView',
+    component: ForgotPasswordView
+  },
+  {
+    path: '/resetPassword',
+    name: 'ResetPasswordView',
+    component: ResetPasswordView
   },
 ]
   
