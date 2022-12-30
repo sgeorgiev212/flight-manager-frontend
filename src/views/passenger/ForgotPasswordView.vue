@@ -20,7 +20,7 @@
               <button
                 type="submit"
                 class="btn mt-2 mb-2"
-                @click="signin"
+                @click="sendRestPasswordLink"
                 id="continueBtn"
               >
                 Send reset password link
@@ -44,30 +44,32 @@ export default {
   },
 
   methods: {
-     async signin(e) {
+    async sendRestPasswordLink(e) {
       e.preventDefault();
+      
+      swal({
+        text: "Link sent successfully",
+        icon: "success",
+      });
+
       await axios
         .post(this.baseUrl + "/passenger/resetPassword/" + this.email)
         .then((res) => {
           if (res.status == 200) {
             this.user = res.data;
-            swal({
-              text: "Link sent successfully",
-              icon: "success",
-            });
             // console.log("user", this.user);
             // this.$emit("setCurrentUserId", this.user.id);
             // this.$emit("setCurrentUser", this.user);
             // this.$router.push({ name: "home" });
-          } 
+          }
         })
         .catch((err) => {
-         console.log("err", err);
-                swal({
-                 text: err.response.data,
-                 icon: "warning"
-             }) 
-    });
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
     },
   },
 };
