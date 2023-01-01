@@ -18,7 +18,12 @@
     <router-link :to="{ name: 'AllTravelAgencies' }">
       <button class="btn btn-large" id="adminBtn">Manage travel agencies</button>
     </router-link>
-       </div>
+      </div>
+      <div>
+    <router-link :to="{ name: 'AllTravelAgencies' }">
+      <button class="btn btn-large" id="adminBtn">Manage airports</button>
+    </router-link>
+      </div>
   </div>
 </template>
 <script>

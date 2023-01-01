@@ -81,7 +81,7 @@
                   v-if="currentUserType == 'ADMIN'"
                   class="btn btn-primary"
                   id="deleteBtn"
-                  @click="deleteReview(review.reviewId, review)"
+                  @click="deleteReview(review.id)"
                 >
                   Delete
                 </button>
@@ -105,7 +105,7 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["baseUrl", "airlines", "currentUser", "isLoggedIn"],
+  props: ["baseUrl", "airlines", "currentUser", "isLoggedIn", "currentUserType"],
   data() {
     return {
       airline: {},
@@ -149,6 +149,28 @@ export default {
               this.isHidden = !this.isHidden;
               swal({
               text: "Review added successfully!",
+              icon: "success",
+            });
+          }
+        })
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+
+     deleteReview(reviewId) {
+      axios
+        .delete(this.baseUrl + "/airline/" + this.id + "/review/" + reviewId)
+        .then((res) => {
+            if (res.status == 200) {
+              this.$emit("getAllAirlines")
+              this.getAirlineReviews();
+              swal({
+              text: "Review deleted successfully!",
               icon: "success",
             });
           }

@@ -55,13 +55,13 @@ export default {
     return {
       baseUrl: "http://localhost:8888",
       flights: [],
-      airlines: [],
-      travelAgencies: [],
+      airlines: null,
+      travelAgencies: null,
       airports: [],
       isLoggedIn: null,
-      currentUser: {},
+      currentUser: null,
       currentUserId: null,
-      currentUserType: "",
+      currentUserType: null,
       currentAirline: "",
       currentAirlineId: null,
       reviews: []
