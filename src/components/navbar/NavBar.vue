@@ -114,14 +114,14 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <router-link
-              v-if="!currentUser"
+              v-if="!isLoggedIn"
               :to="{ name: 'SignUp' }"
               class="dropdown-item"
             >
               Sign up
             </router-link>
             <router-link
-              v-if="!currentUser"
+              v-if="!isLoggedIn"
               :to="{ name: 'SignIn' }"
               class="dropdown-item"
             >
@@ -176,7 +176,7 @@
             >
               Admin page
             </router-link>
-            <a class="dropdown-item" href="#" @click="signout" v-if="currentUser">
+            <a class="dropdown-item" href="#" @click="signout" v-if="isLoggedIn">
               Sign out
             </a>
           </div>
@@ -190,7 +190,7 @@
 import swall from "sweetalert";
 export default {
   // name: "NavBar",
-    props: ["currentUser", "currentUserType", "currentAirlineId"],
+    props: ["currentUser", "currentUserType", "currentAirlineId", "isLoggedIn"],
   data() {
     return {
     };
@@ -208,7 +208,8 @@ export default {
    }
 
   },
-  mounted() {},
+  mounted() {
+  },
 };
 </script>
 

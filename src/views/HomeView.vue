@@ -14,7 +14,7 @@
         </header>
       </div>
     </div>
-    <div class="container">
+    <div class="container" id="explore-airlines">
       <div class="row">
         <div class="col-12 text-center">
           <h2 class="pt-3 mt-5">Airlines</h2>
@@ -26,7 +26,7 @@
           :key="index"
           class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex"
         >
-          <AirlineBox :airline="this.airlines[index-1]"></AirlineBox>
+          <AirlineBox :airline="airlines[index-1]"></AirlineBox>
         </div>
          current user: {{currentUser}}
          current type: {{currentUserType}}
@@ -42,7 +42,7 @@
           :key="index"
           class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex"
         >
-          <TravelAgencyBox :agency="this.travelAgencies[index-1]"></TravelAgencyBox>
+          <TravelAgencyBox :agency="travelAgencies[index-1]"></TravelAgencyBox>
         </div>
           <!-- {{airlines}} -->
       </div>
@@ -66,12 +66,24 @@ export default {
 
   mounted() {
     // emit
+    // this.getAllFlights();
+    this.$emit("getAllFlights");
+    this.$emit("getAllAirlines");
+    this.$emit("getAllTravelAgencies");
+    this.$emit("getAllAirports");
+    // this.getAllAirlines();
+    // this.getAllTravelAgencies();
+    // this.getAllAirports();
     this.airlinesSize = Math.min(6, this.airlines.length);
     this.travelAgenciesSize = Math.min(6, this.travelAgencies.length);
   },
 };
 </script>
 <style>
+html{
+  scroll-behavior:smooth
+}
+
 .page-holder {
   min-height: 100vh;
 }

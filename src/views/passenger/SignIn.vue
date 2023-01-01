@@ -86,6 +86,8 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             this.user = res.data;
+            localStorage.setItem("loggedIn", true);
+            this.$emit("updateLoginStatus");
             swal({
               text: "Signed in successfully",
               icon: "success",

@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavBar
+      :isLoggedIn="isLoggedIn"
       :currentUser="currentUser"
       :currentUserType="currentUserType"
       :currentAirlineId="currentAirlineId"
@@ -12,7 +13,7 @@
       <router-link to="/about">About</router-link>
     </nav> -->
     <div style="min-height: 80vh">
-      <router-view
+      <router-view v-if="airlines && travelAgencies"
         :baseUrl="baseUrl"
         :flights="flights"
         :airlines="airlines"
@@ -24,6 +25,7 @@
         :currentAirlineId="currentAirlineId"
         :reviews="reviews"
         :currentAirline="currentAirline"
+        :isLoggedIn="isLoggedIn"
         @getAllFlights="getAllFlights"
         @getAllAirlines="getAllAirlines"
         @getAllTravelAgencies="getAllTravelAgencies"
@@ -34,6 +36,7 @@
         @setCurrentUserId="setCurrentUserId"
         @updateCurrentUser="updateCurrentUser"
         @updateCurrentAirline="updateCurrentAirline"
+        @updateLoginStatus="updateLoginStatus"
       >
       </router-view>
     </div>
@@ -55,6 +58,7 @@ export default {
       airlines: [],
       travelAgencies: [],
       airports: [],
+      isLoggedIn: null,
       currentUser: {},
       currentUserId: null,
       currentUserType: "",
@@ -204,7 +208,13 @@ export default {
         });
     },
 
-    async signOut() {
+    updateLoginStatus () {
+      this.isLoggedIn = localStorage.getItem("loggedIn");
+    },
+
+     signOut() {
+      this.isLoggedIn = null;
+      localStorage.removeItem("loggedIn");
       this.currentUser = null;
       this.currentUserType = "";
       this.currentAirlineId = null;
@@ -216,6 +226,8 @@ export default {
     this.getAllAirlines();
     this.getAllTravelAgencies();
     this.getAllAirports();
+    this.isLoggedIn = localStorage.getItem("loggedIn");
+    console.log("is logged in ", this.isLoggedIn);
   },
 };
 </script>

@@ -29,6 +29,7 @@
           class="btn"
           style="float: right"
           id="reviewBtn"
+          v-if="isLoggedIn"
           @click="addReview"
         >
           Add review
@@ -104,7 +105,7 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["baseUrl", "airlines", "currentUser"],
+  props: ["baseUrl", "airlines", "currentUser", "isLoggedIn"],
   data() {
     return {
       airline: {},
@@ -115,7 +116,7 @@ export default {
   },
 
   methods: {
-    getAirlineReviews() {
+    async getAirlineReviews() {
       axios
         .get(this.baseUrl + "/airline/" + this.id + "/reviews")
         .then((res) => (this.reviews = res.data))
