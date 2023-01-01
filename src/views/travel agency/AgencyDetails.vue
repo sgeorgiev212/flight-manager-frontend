@@ -74,7 +74,7 @@
                   v-if="currentUserType == 'ADMIN'"
                   class="btn btn-primary"
                   id="deleteBtn"
-                  @click="deleteReview(review.reviewId, review)"
+                  @click="deleteReview(review.id)"
                 >
                   Delete
                 </button>
@@ -98,31 +98,31 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["baseUrl", "travelAgencies", "currentUser", "reviews"],
+  props: ["baseUrl", "travelAgencies", "currentUser", "currentUserType"],
   data() {
     return {
       agency: {},
-      // reviews: {},
+      reviews: {},
       isHidden: true,
       userReview: null,
     };
   },
 
   methods: {
-    // getAgencyReviews(agencyId) {
-    //   console.log("called get reviews agency");
-    //   axios
-    //     .get(this.baseUrl + "/agenices/" + agencyId + "/reviews")
-    //     .then((res) => (this.reviews = res.data,
-    //      console.log("inside 200 success")))
-    //     .catch((err) => {
-    //       console.log("err", err);
-    //       swal({
-    //         text: err.response.data,
-    //         icon: "warning",
-    //       });
-    //     });
-    // },
+    getAgencyReviews() {
+      console.log("called get reviews agency");
+      axios
+        .get(this.baseUrl + "/agencies/" + this.id + "/reviews")
+        .then((res) => (this.reviews = res.data,
+         console.log("inside 200 success")))
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
 
       submitReview() {
       const review = {
@@ -136,7 +136,7 @@ export default {
         .then((res) => {
             if (res.status == 200) {
               this.$emit("getAllTravelAgencies")
-              this.$emit("getAgencyReviews", this.id)
+              // this.$emit("getAgencyReviews", this.id)
               // this.getAgencyReviews();
               this.isHidden = !this.isHidden;
               swal({
@@ -154,6 +154,28 @@ export default {
         });
     },
 
+      deleteReview(reviewId) {
+      axios
+        .delete(this.baseUrl + "/agencies/" + this.id + "/review/" + reviewId)
+        .then((res) => {
+            if (res.status == 200) {
+              this.$emit("getAllTravelAgencies");
+              this.getAgencyReviews();
+              swal({
+              text: "Review deleted successfully!",
+              icon: "success",
+            });
+          }
+        })
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+
     addReview() {
       this.isHidden = !this.isHidden;
     },
@@ -165,9 +187,9 @@ export default {
 
   mounted() {
     this.id = this.$route.params.id;
-     this.$emit("getAgencyReviews", this.id)
+  //  this.$emit("getAgencyReviews", this.id)
     this.agency = this.travelAgencies.find((agency) => agency.id == this.id);
-    // this.getAgencyReviews();
+    this.getAgencyReviews();
     this.scrollToTop();
   },
 };
