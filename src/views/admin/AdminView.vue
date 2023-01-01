@@ -20,7 +20,7 @@
     </router-link>
       </div>
       <div>
-    <router-link :to="{ name: 'AllTravelAgencies' }">
+    <router-link :to="{ name: 'AllAirports' }">
       <button class="btn btn-large" id="adminBtn">Manage airports</button>
     </router-link>
       </div>
