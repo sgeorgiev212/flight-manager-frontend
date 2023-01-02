@@ -62,7 +62,7 @@ export default {
 
   methods: {
     goToEditPage(){
-      this.$router.push({name: "EditAirlineProfile"});
+      this.$router.push({name: "EditAgencyProfile"});
     },
   },
 

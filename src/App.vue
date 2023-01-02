@@ -39,6 +39,7 @@
         @updateCurrentUser="updateCurrentUser"
         @updateCurrentAirline="updateCurrentAirline"
         @updateLoginStatus="updateLoginStatus"
+        @updateCurrentAgency="updateCurrentAgency"
       >
       </router-view>
     </div>
@@ -205,6 +206,24 @@ export default {
           (res) => (
             this.currentAirline = res.data,
             console.log("current airline: ", this.currentAirline)
+          )
+        )
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+   },
+
+   async updateCurrentAgency(){
+         await axios
+        .get(this.baseUrl + "/agencies/" + this.currentAgencyId)
+        .then(
+          (res) => (
+            this.currentAgency = res.data,
+            console.log("current airline: ", this.currentAgency)
           )
         )
         .catch((err) => {

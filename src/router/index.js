@@ -30,6 +30,7 @@ import AllAirports from '../views/airport/AllAirports.vue'
 import AddAirport from '../views/airport/AddAirport'
 import EditAirport from '../views/airport/EditAirport.vue'
 import TravelAgencyProfile from '../views/travel agency/TravelAgencyProfile.vue'
+import EditAgencyProfile from '../views/travel agency/EditAgencyProfile.vue'
 
 const routes = [
   {
@@ -194,6 +195,11 @@ const routes = [
     path: '/agency/profile',
     name: 'TravelAgencyProfile',
     component: TravelAgencyProfile
+  },
+  {
+    path: '/agency/profile/edit',
+    name: 'EditAgencyProfile',
+    component: EditAgencyProfile
   },
 ]
   
