@@ -23,7 +23,7 @@
               Passenger id: {{booking.passengerId}}
             </div>
             <div v-else-if="booking.agency" class="col-3 mt-2">
-              Travl agency: {{ booking.agency }}
+              Travel agency: {{ booking.agency }}
             </div>
             <div class="col-3" style="text-align: right">
               <button

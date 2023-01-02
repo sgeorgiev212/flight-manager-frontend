@@ -29,9 +29,9 @@
               <button
                 class="btn mt-1"
                 id="createTicketBtn"
-                @click="createTicketFromBooking(booking.id)"
+                @click="requestBooking(booking.id)"
               >
-                Create ticket
+                Request approval
               </button>
             </div>
           </div>
@@ -67,16 +67,16 @@ export default {
         });
     },
 
-    async createTicketFromBooking(id) {
+    async requestBooking(id) {
       await axios
-        .post(this.baseUrl + "/airline/" + this.currentAirlineId + "/bookings/" + id)
+        .put(this.baseUrl + "/agencies/bookings/" + id)
         .then((res) => {
-             if (res.status == 200) {
+            if (res.status == 200) {
+            this.getBookingsForAgency();
             swal({
-              text: "Ticket canceled successfully!",
+              text: "Booking request sent successfully!",
               icon: "success",
             });
-            this.getBookingsForAirline();
           }
         })
         .catch((err) => {
