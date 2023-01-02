@@ -26,6 +26,8 @@
         :reviews="reviews"
         :currentAirline="currentAirline"
         :isLoggedIn="isLoggedIn"
+        :currentAgency="currentAgency"
+        :currentAgencyId="currentAgencyId"
         @getAllFlights="getAllFlights"
         @getAllAirlines="getAllAirlines"
         @getAllTravelAgencies="getAllTravelAgencies"
@@ -64,6 +66,8 @@ export default {
       currentUserType: null,
       currentAirline: "",
       currentAirlineId: null,
+      currentAgency: "",
+      currentAgencyId: null,
       reviews: []
     };
   },
@@ -128,6 +132,9 @@ export default {
       if (this.currentUserType == "AIRLINE_MANAGER") {
         this.findAirlineByManagerId(this.currentUser.id);
       }
+      if (this.currentUserType == "AGENCY_MANAGER") {
+        this.findAgencyByManagerId(this.currentUser.id);
+      }
     },
 
     setCurrentUserId(id) {
@@ -159,6 +166,27 @@ export default {
             this.currentAirline = res.data,
             console.log("current airline id id: ", this.currentAirlineId),
             console.log("current airline: ", this.currentAirline)
+          )
+        )
+        .catch((err) => {
+          console.log("err", err);
+          swal({
+            text: err.response.data,
+            icon: "warning",
+          });
+        });
+    },
+
+    async findAgencyByManagerId(managerId) {
+      console.log("manage id in method: ", managerId);
+      await axios
+        .get(this.baseUrl + "/agencies/manager/" + managerId)
+        .then(
+          (res) => (
+            (this.currentAgencyId = res.data.id),
+            this.currentAgency = res.data,
+            console.log("current agency id: ", this.currentAgencyId),
+            console.log("current agency: ", this.currentAgency)
           )
         )
         .catch((err) => {

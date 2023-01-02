@@ -155,6 +155,13 @@
             >
               Airline Profile
             </router-link>
+                <router-link
+              v-if="currentUserType == 'AGENCY_MANAGER'"
+              :to="{ name: 'TravelAgencyProfile' }"
+              class="dropdown-item "
+            >
+              Agency Profile
+            </router-link>
             <!-- <router-link
               v-if="!token"
               :to="{ name: 'SignIn' }"

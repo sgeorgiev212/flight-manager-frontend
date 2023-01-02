@@ -29,6 +29,7 @@ import ResetPasswordView from '../views/passenger/ResetPasswordView.vue'
 import AllAirports from '../views/airport/AllAirports.vue'
 import AddAirport from '../views/airport/AddAirport'
 import EditAirport from '../views/airport/EditAirport.vue'
+import TravelAgencyProfile from '../views/travel agency/TravelAgencyProfile.vue'
 
 const routes = [
   {
@@ -188,6 +189,11 @@ const routes = [
     path: '/airports/edit/:id',
     name: 'EditAirport',
     component: EditAirport
+  },
+  {
+    path: '/agency/profile',
+    name: 'TravelAgencyProfile',
+    component: TravelAgencyProfile
   },
 ]
   

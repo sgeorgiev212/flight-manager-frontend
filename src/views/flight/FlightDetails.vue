@@ -72,6 +72,18 @@
               style="background-color: white"
             />
           </div>
+          <div class="form-group pt-3 pb-3">
+            <label>Travel agency</label>
+            <select class="form-control" v-model="travelAgency">
+              <option
+                v-for="agency in travelAgencies"
+                :key="agency.id"
+                :value="agency.name"
+              >
+                {{ agency.name }}
+              </option>
+            </select>
+          </div>
           <router-link :to="{ name: 'AllFlights' }" v-if="currentUserType == 'USER'">
             <button type="button" class="btn mr-2" id="detailsBtn">
               Back to flights list
@@ -82,7 +94,17 @@
               Back to flights list
             </button>
           </router-link>
-          <button
+          <!-- <button
+           v-if="currentUserType == 'USER'"
+            type="button ml-2"
+            class="btn"
+            id="detailsBtn"
+            @click="chooseTravelAgency"
+          >
+            Choose travel agency
+          </button> -->
+          <div class="mt-3" style="text-align: middle">
+            <button
            v-if="currentUserType == 'USER'"
             type="button ml-2"
             class="btn"
@@ -90,7 +112,8 @@
             @click="bookFlight"
           >
             Book flight
-          </button>
+           </button>
+          </div>
           <div>
             <button
               type="button ml-2"
@@ -113,12 +136,14 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-  props: ["flights", "currentUser", "baseUrl", "currentUserType"],
+  props: ["flights", "currentUser", "baseUrl", "currentUserType", "travelAgencies"],
   data() {
     return {
       flight: {},
       takeoffTime: "",
       landTime: "",
+      travelAgency: null,
+      isHidden: true
     };
   },
 
@@ -134,7 +159,7 @@ export default {
       e.preventDefault();
       const newBooking = {
         passengerId: this.currentUser.id,
-        agencyId: 0,
+        agency: this.travelAgency,
         airline: this.flight.airline,
         flightId: this.flight.flightId,
       };
@@ -158,6 +183,10 @@ export default {
         });
     },
 
+    chooseTravelAgency() {
+     this.isHidden = !this.isHidden;
+    },
+     
     scrollToTop() {
       window.scrollTo(0, 0);
     },

@@ -33,16 +33,16 @@
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="edit-btn" type="button" @click="applyChanges">Apply changes</button></div>
                 <div class="row mt-3">
                  <div class="col-md-12 mt-1"><h5 class="text-left">Password management</h5></div>
-                    <div class="col-md-6 mt-3"><label class="labels">Current password</label><input type="password" class="form-control" id="pwdField" v-model="currentPassword">
-                                    <div class="mt-2" style="text-align: left">
+                 <div class="col-md-6 mt-3"><label class="labels">Current password</label><input type="password" class="form-control" id="pwdField" v-model="currentPassword">
+                  <div class="mt-2" style="text-align: left">
                 <input type="checkbox" @click="togglePassword()" /> Show password
-              </div>
-                    </div>
-                    <div class="col-md-6 mt-3"><label class="labels">New password</label><input type="password" class="form-control" id="pwdField2" v-model="newPassword">
-                                    <div class="mt-2" style="text-align: left">
+                  </div>
+                </div>
+                  <div class="col-md-6 mt-3"><label class="labels">New password</label><input type="password" class="form-control" id="pwdField2" v-model="newPassword">
+                     <div class="mt-2" style="text-align: left">
                 <input type="checkbox" @click="toggleConfirmPassword()" /> Show password
-              </div>
                     </div>
+                 </div>
                 </div>
                 <div class="mt-4 text-center"><button class="btn btn-primary profile-button" id="edit-btn" type="button" @click="changePassword">Change password</button></div>
 
