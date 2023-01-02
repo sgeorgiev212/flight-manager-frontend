@@ -97,6 +97,13 @@
             >
               Add flight for airline
             </router-link>
+              <router-link
+              v-if="currentUserType == 'AGENCY_MANAGER'"
+              class="dropdown-item"
+              :to="{ name: 'AgencyBookings' }"
+            >
+              Agency bookings
+            </router-link>
           </div>
         </li>
 
