@@ -137,7 +137,7 @@ export default {
             if (res.status == 200) {
               this.$emit("getAllTravelAgencies")
               // this.$emit("getAgencyReviews", this.id)
-              // this.getAgencyReviews();
+              this.getAgencyReviews();
               this.isHidden = !this.isHidden;
               swal({
               text: "Review added successfully!",
