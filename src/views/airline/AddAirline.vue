@@ -55,6 +55,7 @@ export default {
         .post(this.baseUrl + "/admin/airline", newAirline)
         .then((res) => {
           if (res.status == 200) {
+            this.$emit("getAllAirlines");
             swal({
               text: "Airline added successfully!",
               icon: "success",

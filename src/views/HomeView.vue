@@ -28,8 +28,6 @@
         >
           <AirlineBox :airline="airlines[index-1]"></AirlineBox>
         </div>
-         current user: {{currentUser}}
-         current type: {{currentUserType}}
       </div>
       <div class="row">
         <div class="col-12 text-center">
@@ -44,7 +42,6 @@
         >
           <TravelAgencyBox :agency="travelAgencies[index-1]"></TravelAgencyBox>
         </div>
-          <!-- {{airlines}} -->
       </div>
     </div>
   </div>

@@ -8,10 +8,6 @@
       @signOut="signOut"
     >
     </NavBar>
-    <!-- <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav> -->
     <div style="min-height: 80vh">
       <router-view v-if="airlines && travelAgencies"
         :baseUrl="baseUrl"
@@ -239,21 +235,6 @@ export default {
       this.currentAirlineId = id;
       console.log("current airline id : " + this.currentAirlineId);
     },
-
-    //   async getAgencyReviews(agencyId) {
-    //   console.log("called get reviews agency");
-    //   await axios
-    //     .get(this.baseUrl + "/agencies/" + agencyId + "/reviews")
-    //     .then((res) => (this.reviews = res.data,
-    //      console.log("inside 200 success")))
-    //     .catch((err) => {
-    //       console.log("err", err);
-    //       swal({
-    //         text: err.response.data,
-    //         icon: "warning",
-    //       });
-    //     });
-    // },
 
     updateLoginStatus () {
       this.isLoggedIn = localStorage.getItem("loggedIn");

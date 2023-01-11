@@ -74,7 +74,7 @@ export default {
         token: this.token
       };
 
-      await axios
+      await axios 
         .put(this.baseUrl + "/passenger/updatePassword", body)
         .then((res) => {
           if (res.status == 200) {

@@ -123,7 +123,7 @@ export default {
         landTime: this.landTime,
         takeoffAirport: this.takeoffAirport,
         landAirport: this.landAirport,
-        airline: this.airline.name,
+        airline: this.airline
       };
 
       await axios

@@ -1,11 +1,5 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <!--    Logo   -->
-    <!-- <router-link class="navbar-brand" :to="{ name: 'Home' }"> -->
-    <!-- <img id="logo" src="../assets/icon.png" /> -->
-    <!-- </router-link> -->
-
-    <!--    Burger Button-->
     <button
       class="navbar-toggler"
       type="button"
@@ -19,28 +13,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- <form class="form-inline ml-auto mr-auto" onsubmit="return false;">
-        <div class="input-group">
-          <input
-            size="100"
-            type="text"
-            class="form-control"
-            placeholder="Enter item name"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-            v-model="searchedItem"
-          />
-          <div class="input-group-prepend">
-            <button
-              class="btn my-5 my-sm-0"
-              id="search-button-navbar"
-              @click="searchItems"
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </form> -->
 
       <ul class="navbar-nav ml-auto mr-4 mt-2">
         <li class="nav-item dropdown mr-4" id="listItem">

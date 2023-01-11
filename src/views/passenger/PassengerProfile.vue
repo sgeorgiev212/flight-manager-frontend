@@ -41,31 +41,6 @@
      },
 
      methods: {
-    //  async findUserByToken(){
-    // //      await axios.get(this.requestURL + "/users?token=" + this.token)
-    // //       .then((res) =>{
-    // //           console.log('res', res.data)
-    // //        if (res.data ) {
-    // //          this.currentUser = res.data;
-    // //          console.log('current user: ', this.currentUser);
-    // //        }else {
-    // //             swal({
-    // //             text: "Unable to load user details",
-    // //             icon: "warning",
-    // //        })
-    // //        }
-    // //        if(this.currentUser.savedAddresses){
-    // //            this.userAddresses = this.currentUser.savedAddresses;
-    // //            if (this.userAddresses.length >= 1)
-    // //            {
-    // //            this.currentAddress = this.userAddresses[this.userAddresses.length - 1];
-    // //            }
-    // //        }
-
-    // //   }).catch((err) => {
-    // //       console.log("err", err);
-    // //     });
-    //  },
 
     goToEditPage(){
       this.$router.push({name: "EditProfile"});

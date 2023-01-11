@@ -8,7 +8,6 @@
         </router-link>
       </div>
     </div>
-    <div class="row"> {{ airlines }}</div>
     <div class="row">
        <div v-for="airline of airlines" :key="airline.id" class="col-xl-4 col-md-6 col-12 pt-3 d-flex">
         <AirlineBox :airline="airline"></AirlineBox>
